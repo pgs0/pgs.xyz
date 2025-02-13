@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <link href="/icon.jpg" rel="shortcut icon"/>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>George Orwell Zitate</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #f7e7ce, #d4a373);
+            padding: 20px;
+        }
+        .container {
+            background: white;
+            padding: 40px;
+            border-radius: 25px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 800px;
+            text-align: center;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        h1 {
+            font-family: 'Playfair Display', serif;
+            color: #3e4444;
+            margin-bottom: 30px;
+            font-size: 36px;
+            font-weight: 700;
+        }
+        .quote-container {
+            width: 100%;
+            height: 200px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+        .quote {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            color: #555;
+            line-height: 1.6;
+            max-width: 100%;
+            overflow: hidden;
+        }
+        .author {
+            font-size: 18px;
+            color: #777;
+            margin-bottom: 20px;
+        }
+        button {
+            background-color: #b5835a;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 12px;
+            font-size: 18px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+            margin: 5px;
+            width: 100%;
+            max-width: 300px;
+        }
+        button:hover {
+            background-color: #9c6f47;
+            transform: translateY(-2px);
+        }
+        .language-switch {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px;
+        }
+        .language-switch input[type="checkbox"] {
+            display: none;
+        }
+        .language-switch label {
+            background-color: #8a6d4b;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            position: relative;
+            z-index: 1;
+        }
+        .language-switch label:hover {
+            background-color: #70573a;
+        }
+        .language-switch input[type="checkbox"]:checked + label {
+            background-color: #70573a;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 30px;
+            }
+            .quote {
+                font-size: 20px;
+            }
+            button {
+                padding: 15px;
+                font-size: 16px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 10px;
+            }
+            .container {
+                padding: 20px;
+                border-radius: 15px;
+            }
+            h1 {
+                font-size: 24px;
+                margin-bottom: 20px;
+            }
+            .quote {
+                font-size: 18px;
+            }
+            .author {
+                font-size: 16px;
+                margin-bottom: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>George Orwell Zitate</h1>
+        <div class="quote-container">
+            <div class="quote" id="quote">Lade Zitat...</div>
+            <div class="author">- George Orwell</div>
+        </div>
+        <button id="newQuoteButton" onclick="shuffleQuote()">Neues Zitat</button>
+        <div class="language-switch">
+            <input type="checkbox" id="languageSwitch" onclick="toggleLanguage()">
+            <label for="languageSwitch" id="languageSwitchLabel">Deutsche Zitate</label>
+        </div>
+    </div>
+
+    <script>
+        const englishQuotes = [
+            "All animals are equal, but some animals are more equal than others.",
+            "Big Brother is watching you.",
+            "Freedom is the freedom to say that two plus two make four. If that is granted, all else follows.",
+            "In a time of deceit telling the truth is a revolutionary act.",
+            "War is peace. Freedom is slavery. Ignorance is strength.",
+            "The most effective way to destroy people is to deny and obliterate their own understanding of their history.",
+            "Power is not a means; it is an end. One does not establish a dictatorship in order to safeguard a revolution; one makes the revolution in order to establish the dictatorship.",
+            "If liberty means anything at all, it means the right to tell people what they do not want to hear.",
+            "The choice for mankind lies between freedom and happiness and for the great bulk of mankind, happiness is better.",
+            "Who controls the past controls the future. Who controls the present controls the past.",
+            "Doublethink means the power of holding two contradictory beliefs in one's mind simultaneously, and accepting both of them."
+        ];
+
+        const germanQuotes = [
+            "Alle Tiere sind gleich, aber einige Tiere sind gleicher als andere.",
+            "Der große Bruder beobachtet dich.",
+            "Freiheit ist die Freiheit zu sagen, dass zwei plus zwei vier ergibt. Wenn das gewährt wird, folgt alles andere.",
+            "In einer Zeit der Täuschung ist das Aussprechen der Wahrheit eine revolutionäre Handlung.",
+            "Krieg ist Frieden. Freiheit ist Sklaverei. Unwissenheit ist Stärke.",
+            "Der effektivste Weg, Menschen zu zerstören, besteht darin, ihr eigenes Verständnis ihrer Geschichte zu leugnen und auszulöschen.",
+            "Macht ist kein Mittel; sie ist ein Zweck. Man errichtet keine Diktatur, um eine Revolution zu schützen; man macht die Revolution, um die Diktatur zu errichten.",
+            "Wenn Freiheit überhaupt etwas bedeutet, dann das Recht, den Menschen zu sagen, was sie nicht hören wollen.",
+            "Die Wahl für die Menschheit liegt zwischen Freiheit und Glück, und für den Großteil der Menschheit ist Glück besser.",
+            "Wer die Vergangenheit kontrolliert, kontrolliert die Zukunft. Wer die Gegenwart kontrolliert, kontrolliert die Vergangenheit.",
+            "Doppeldenk bedeutet die Fähigkeit, zwei widersprüchliche Überzeugungen gleichzeitig im Kopf zu haben und beide zu akzeptieren."
+        ];
+
+        let usingEnglish = true;
+
+        function shuffleQuote() {
+            const quotes = usingEnglish ? englishQuotes : germanQuotes;
+            const randomIndex = Math.floor(Math.random() * quotes.length);
+            document.getElementById('quote').textContent = `"${quotes[randomIndex]}"`;
+            document.getElementById('newQuoteButton').textContent = usingEnglish ? 'New Quote' : 'Neues Zitat';
+        }
+
+        function toggleLanguage() {
+            usingEnglish = !usingEnglish;
+            shuffleQuote();
+            const languageSwitchLabel = document.getElementById('languageSwitchLabel');
+            languageSwitchLabel.textContent = usingEnglish ? 'English Quotes' : 'Deutsche Zitate';
+        }
+
+        // Initial quote on page load
+        window.onload = shuffleQuote;
+    </script>
+</body>
+</html>

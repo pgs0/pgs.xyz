@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <link href="/icon.jpg" rel="shortcut icon"/>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Franz Kafka Zitate</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #f7e7ce, #d4a373);
+            padding: 20px;
+        }
+        .container {
+            background: white;
+            padding: 40px;
+            border-radius: 25px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 800px;
+            text-align: center;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        h1 {
+            font-family: 'Playfair Display', serif;
+            color: #3e4444;
+            margin-bottom: 30px;
+            font-size: 36px;
+            font-weight: 700;
+        }
+        .quote-container {
+            width: 100%;
+            height: 200px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+        .quote {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            color: #555;
+            line-height: 1.6;
+            max-width: 100%;
+            overflow: hidden;
+        }
+        .author {
+            font-size: 18px;
+            color: #777;
+            margin-bottom: 20px;
+        }
+        button {
+            background-color: #b5835a;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 12px;
+            font-size: 18px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+            margin: 5px;
+        }
+        button:hover {
+            background-color: #9c6f47;
+            transform: translateY(-2px);
+        }
+        .language-switch {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px;
+        }
+        .language-switch input[type="checkbox"] {
+            display: none;
+        }
+        .language-switch label {
+            background-color: #8a6d4b;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            position: relative;
+            z-index: 1;
+        }
+        .language-switch label:hover {
+            background-color: #70573a;
+        }
+        .language-switch input[type="checkbox"]:checked + label {
+            background-color: #70573a;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 30px;
+            }
+            .quote {
+                font-size: 20px;
+            }
+            button {
+                width: 100%;
+                padding: 15px;
+                font-size: 16px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 10px;
+            }
+            .container {
+                padding: 20px;
+                border-radius: 15px;
+            }
+            h1 {
+                font-size: 24px;
+                margin-bottom: 20px;
+            }
+            .quote {
+                font-size: 18px;
+            }
+            .author {
+                font-size: 16px;
+                margin-bottom: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Franz Kafka Zitate</h1>
+        <div class="quote-container">
+            <div class="quote" id="quote">Lade Zitat...</div>
+            <div class="author">- Franz Kafka</div>
+        </div>
+        <button id="newQuoteButton" onclick="shuffleQuote()">Neues Zitat</button>
+        <div class="language-switch">
+            <input type="checkbox" id="languageSwitch" onclick="toggleLanguage()">
+            <label for="languageSwitch" id="languageSwitchLabel">Deutsche Zitate</label>
+        </div>
+    </div>
+
+    <script>
+        const englishQuotes = [
+            "All human errors are impatience, a premature breaking off of methodical procedure, an apparent fencing-in of what is apparently at issue.",
+            "Youth is happy because it has the ability to see beauty. Anyone who keeps the ability to see beauty never grows old.",
+            "A book must be the axe for the frozen sea within us.",
+            "By believing passionately in something that still does not exist, we create it. The non-existent is whatever we have not sufficiently desired.",
+            "Start with what is right rather than what is acceptable.",
+            "Don't bend; don't water it down; don't try to make it logical; don't edit your own soul according to the fashion. Rather, follow your most intense obsessions mercilessly.",
+            "Many a book is like a key to unknown chambers within the castle of one's own self.",
+            "The meaning of life is that it stops.",
+            "In man's struggle against the world, bet on the world.",
+            "A first sign of the beginning of understanding is the wish to die.",
+            "It is not necessary to accept everything as true, one must only accept it as necessary.",
+            "I am free and that is why I am lost.",
+            "The truth is always an abyss. One must — as in a swimming pool — dare to dive from the quivering springboard of trivial everyday experience and sink into the depths, in order later to rise again — laughing and fighting for breath — to the now doubly illuminating surface of things.",
+            "The person who has not experienced the darkness of the soul will never reach enlightenment.",
+            "The person who lives in solitude can only be comforted by the solitude of others.",
+            "A belief is like a guillotine, just as heavy, just as light.",
+            "The true way is along a rope that is not spanned high in the air, but only just above the ground. It seems intended more to cause stumbling than to be walked upon.",
+            "The person who has not experienced the darkness of the soul will never reach enlightenment.",
+            "The person who lives in solitude can only be comforted by the solitude of others.",
+            "A belief is like a guillotine, just as heavy, just as light.",
+            "The person who has not experienced the darkness of the soul will never reach enlightenment.",
+            "The person who lives in solitude can only be comforted by the solitude of others.",
+            "A belief is like a guillotine, just as heavy, just as light."
+        ];
+
+        const germanQuotes = [
+            "Alle menschlichen Irrtümer sind Ungeduld, ein vorzeitiges Abbrechen des methodischen Verfahrens, ein scheinbares Einzäunen dessen, was scheinbar zur Debatte steht.",
+            "Die Jugend ist glücklich, weil sie die Fähigkeit hat, Schönheit zu sehen. Wer die Fähigkeit behält, Schönheit zu sehen, wird nie alt.",
+            "Ein Buch muss die Axt für das gefrorene Meer in uns sein.",
+            "Indem wir leidenschaftlich an etwas glauben, das noch nicht existiert, schaffen wir es. Das Nichtexistente ist alles, was wir nicht ausreichend begehrt haben.",
+            "Beginne mit dem, was richtig ist, anstatt mit dem, was akzeptabel ist.",
+            "Biege dich nicht; verwässere es nicht; versuche nicht, es logisch zu machen; bearbeite deine eigene Seele nicht nach der Mode. Verfolge stattdessen deine intensivsten Obsessionen gnadenlos.",
+            "Viele Bücher sind wie ein Schlüssel zu unbekannten Kammern im Schloss des eigenen Selbst.",
+            "Der Sinn des Lebens ist, dass es aufhört.",
+            "Im Kampf des Menschen gegen die Welt, setze auf die Welt.",
+            "Ein erstes Anzeichen des beginnenden Verständnisses ist der Wunsch zu sterben.",
+            "Es ist nicht notwendig, alles als wahr zu akzeptieren, man muss es nur als notwendig akzeptieren.",
+            "Ich bin frei und deshalb verloren.",
+            "Die Wahrheit ist immer ein Abgrund. Man muss – wie in einem Schwimmbecken – wagen, vom zitternden Sprungbrett der trivialen Alltagserfahrung zu springen und in die Tiefe zu sinken, um später – lachend und nach Luft ringend – zur nun doppelt erleuchtenden Oberfläche der Dinge zurückzukehren.",
+            "Wer die Dunkelheit der Seele nicht erlebt hat, wird nie zur Erleuchtung gelangen.",
+            "Wer in Einsamkeit lebt, kann nur durch die Einsamkeit anderer getröstet werden.",
+            "Ein Glaube ist wie eine Guillotine, genauso schwer, genauso leicht.",
+            "Der wahre Weg ist ein Seil, das nicht hoch in der Luft gespannt ist, sondern nur knapp über dem Boden. Es scheint mehr dazu bestimmt, Stolpern zu verursachen, als darauf zu gehen.",
+            "Wer die Dunkelheit der Seele nicht erlebt hat, wird nie zur Erleuchtung gelangen.",
+            "Wer in Einsamkeit lebt, kann nur durch die Einsamkeit anderer getröstet werden.",
+            "Ein Glaube ist wie eine Guillotine, genauso schwer, genauso leicht.",
+            "Wer die Dunkelheit der Seele nicht erlebt hat, wird nie zur Erleuchtung gelangen.",
+            "Wer in Einsamkeit lebt, kann nur durch die Einsamkeit anderer getröstet werden.",
+            "Ein Glaube ist wie eine Guillotine, genauso schwer, genauso leicht."
+        ];
+
+        let usingEnglish = true;
+
+        function shuffleQuote() {
+            const quotes = usingEnglish ? englishQuotes : germanQuotes;
+            const randomIndex = Math.floor(Math.random() * quotes.length);
+            document.getElementById('quote').textContent = `"${quotes[randomIndex]}"`;
+            document.getElementById('newQuoteButton').textContent = usingEnglish ? 'New Quote' : 'Neues Zitat';
+        }
+
+        function toggleLanguage() {
+            usingEnglish = !usingEnglish;
+            shuffleQuote();
+            const languageSwitchLabel = document.getElementById('languageSwitchLabel');
+            languageSwitchLabel.textContent = usingEnglish ? 'English Quotes' : 'Deutsche Zitate';
+        }
+
+        // Initial quote on page load
+        window.onload = shuffleQuote;
+    </script>
+</body>
+</html>
+
