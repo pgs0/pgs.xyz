@@ -1,0 +1,10 @@
+# Ignore all JPEG files
+*.jpg
+*.jpeg
+
+# Ignore specific image directories
+/image.jpeg
+/portfolio/image*.jpeg
+
+# Keep icon.jpg
+!/icon.jpg
