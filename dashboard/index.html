@@ -9,116 +9,174 @@
         body {
             font-family: 'Roboto', sans-serif;
             margin: 0;
-            padding: 0;
+            padding: 20px;
             display: flex;
             flex-direction: column;
             align-items: center;
-            height: 100vh;
-            background: linear-gradient(135deg, #a8caba, #e6f7ff);
-            background-image: url('https://www.transparenttextures.com/patterns/cutcube.png'), url('https://www.transparenttextures.com/patterns/double-lined.png');
-            background-blend-mode: multiply;
-            padding: 20px;
+            min-height: 100vh;
+            background: #ffde59;
+            background-image: none;
+            background-blend-mode: normal;
         }
         .container {
-            background: rgba(255, 255, 255, 0.9);
+            background: #ffffff;
             padding: 60px;
-            border-radius: 30px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+            border-radius: 0;
+            box-shadow: 8px 8px 0 #000000;
             width: 90%;
             max-width: 1100px;
             text-align: center;
-            border: 3px solid #d4c2a7;
+            border: 4px solid #000000;
+            position: relative;
         }
         h1 {
             font-family: 'Playfair Display', serif;
-            color: #3e4444;
+            color: #000000;
             margin-bottom: 50px;
             font-size: 48px;
-            font-weight: 700;
+            font-weight: 900;
             letter-spacing: 1px;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
-        }
-        .dashboard {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 40px;
-            padding: 20px 0;
-        }
-        .app-card {
-            background-color: #f9f6f2;
-            border-radius: 20px;
-            padding: 40px;
-            border: 3px solid #d4c2a7;
-            text-align: center;
-            transition: transform 0.3s, box-shadow 0.3s;
-            width: 320px;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            text-shadow: none;
+            transform: rotate(0deg);
+            background: #ffde59;
+            display: inline-block;
+            padding: 20px 40px;
+            border: 4px solid #000000;
+            box-shadow: 8px 8px 0 #000000;
             position: relative;
-            overflow: hidden;
+            z-index: 2;
         }
-        .app-card::before {
-            content: '';
+        .checkerboard {
             position: absolute;
             top: 0;
             left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(255, 255, 255, 0.1);
-            opacity: 0.5;
+            right: 0;
+            bottom: 0;
+            display: grid;
+            grid-template-columns: repeat(10, 1fr);
+            grid-template-rows: repeat(10, 1fr);
+            gap: 2px;
+            padding: 20px;
             pointer-events: none;
-            mix-blend-mode: overlay;
+            z-index: 1;
+        }
+        .checkerboard-square {
+            background: rgba(0, 0, 0, 0.05);
+            border: 2px solid rgba(0, 0, 0, 0.1);
+        }
+        .dashboard {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+            justify-items: center;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .dashboard .app-card:last-child:nth-child(odd) {
+            grid-column: 1 / -1;
+            justify-self: center;
+            max-width: 320px;
+        }
+        .app-card {
+            background-color: #ff6b6b;
+            border-radius: 0;
+            padding: 40px;
+            border: 4px solid #000000;
+            text-align: center;
+            transition: transform 0.2s, box-shadow 0.2s;
+            width: 100%;
+            max-width: 320px;
+            box-shadow: 8px 8px 0 #000000;
+            position: relative;
+            overflow: visible;
+            transform: rotate(0deg);
+        }
+        .app-card:nth-child(2n) {
+            background-color: #4ecdc4;
+            transform: rotate(0deg);
+        }
+        .app-card:nth-child(3n) {
+            background-color: #95e1d3;
+            transform: rotate(0deg);
+        }
+        .app-card::before {
+            display: none;
         }
         .app-card:hover {
-            transform: translateY(-15px);
-            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+            transform: translateY(-5px) rotate(0deg);
+            box-shadow: 12px 12px 0 #000000;
         }
         .app-card h2 {
             font-family: 'Playfair Display', serif;
-            color: #3e4444;
+            color: #000000;
             font-size: 32px;
             margin-bottom: 25px;
+            font-weight: 900;
         }
         .app-card p {
-            color: #666;
+            color: #000000;
             font-size: 20px;
             margin-bottom: 30px;
             line-height: 1.5;
+            font-weight: 700;
         }
         .app-card a {
-            background-color: #b5835a;
-            color: white;
+            background-color: #000000;
+            color: #ffffff;
             padding: 18px 35px;
-            border-radius: 15px;
+            border-radius: 0;
             text-decoration: none;
             font-size: 20px;
-            transition: background-color 0.3s;
+            transition: transform 0.2s, box-shadow 0.2s;
             position: relative;
             z-index: 1;
+            border: 3px solid #000000;
+            font-weight: 700;
+            box-shadow: 4px 4px 0 #000000;
         }
         .app-card a:hover {
-            background-color: #9c6f47;
+            background-color: #ffffff;
+            color: #000000;
+            transform: translate(-2px, -2px);
+            box-shadow: 6px 6px 0 #000000;
         }
         .footer {
             margin-top: 40px;
-            font-family: 'Times New Roman', Times, serif;
+            font-family: 'Roboto', sans-serif;
             font-size: 18px;
-            color: #555;
+            color: #000000;
+            font-weight: 700;
         }
         .footer a {
-            color: #b5835a;
+            color: #000000;
             text-decoration: none;
-            border-bottom: 1px solid #b5835a;
-            transition: color 0.3s, border-color 0.3s;
+            border-bottom: 3px solid #000000;
+            transition: transform 0.2s;
+            padding: 2px 4px;
         }
         .footer a:hover {
-            color: #9c6f47;
-            border-color: #9c6f47;
+            background-color: #000000;
+            color: #ffffff;
+            border-color: #000000;
+            transform: translate(-2px, -2px);
+            box-shadow: 4px 4px 0 #000000;
         }
     </style>
 </head>
 <body>
     <div class="container">
+        <div class="checkerboard">
+            <div class="checkerboard-square"></div>
+            <div class="checkerboard-square"></div>
+            <div class="checkerboard-square"></div>
+            <div class="checkerboard-square"></div>
+            <div class="checkerboard-square"></div>
+            <div class="checkerboard-square"></div>
+            <div class="checkerboard-square"></div>
+            <div class="checkerboard-square"></div>
+            <div class="checkerboard-square"></div>
+            <div class="checkerboard-square"></div>
+        </div>
         <h1>Dashboard</h1>
         <div class="dashboard">
             <!-- Excel Suchmaschine Card -->
