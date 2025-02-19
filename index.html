@@ -1,38 +1,65 @@
 <!DOCTYPE html>
 <html>
     <link href="/icon.jpg" rel="shortcut icon"/>
-
- <center>
-    <link href="style.css" rel="stylesheet" type="text/css">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="style.css" rel="stylesheet" type="text/css">
+        <title> pgs.xyz </title>
+        <style>
+            body {
+                margin: 0;
+                padding: 20px;
+                text-align: center;
+                font-family: 'Courier New', monospace;
+            }
+            .container {
+                max-width: 800px;
+                margin: 0 auto;
+                padding: 20px;
+            }
+            img {
+                max-width: 300px;
+                height: auto;
+                width: 100%;
+            }
+            .links {
+                margin: 20px 0;
+                line-height: 2;
+            }
+            @media (max-width: 768px) {
+                body {
+                    padding: 10px;
+                }
+                img {
+                    max-width: 250px;
+                }
+                .links {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 10px;
+                }
+            }
+        </style>
+    </head>
     <body>
-      <br>
-      <br>
-  
-    <title> pgs.xyz </title>
-    <p>
-      <font size=10 face="Courier New">
-        <em> // Pipo // </em>
-      </font>
-      <hr>
-    </p>
-    
-    <br>
-    
-    <br>
-  <img src=image.jpeg with=300px height=300px />
-  <br>
-  <br>
-  <a href="//24timezones.com/Zurich/time" style="text-decoration: none" class="clock24" id="tz24-1620398593-c1268-eyJob3VydHlwZSI6MTIsInNob3dkYXRlIjoiMCIsInNob3dzZWNvbmRzIjoiMSIsInNob3d0aW1lem9uZSI6IjEiLCJ0eXBlIjoiZCIsImxhbmciOiJlbiJ9" title="Zurich time" target="_blank" rel="nofollow">Zurich time</a>
-<script type="text/javascript" src="//w.24timezones.com/l.js" async></script> <br>
-    <br>
-// <a href="https://pgs.xyz/portfolio">Portfolio</a> // 
-    <br>
-    <br>
- // <a href="https://solo.to/pgs">all links</a> // <a href="https://instagram.com/pgs2007">instagram</a> // <a href="https://bondia.xyz/">writing</a> // <a href="/dashboard/kafka.html">Franz Kafka Quotes</a> // <a href="/dashboard">dashboard</a> // 
-    
-<script type="text/javascript" src="/unprotected/back_to_spaceship.js?hash=4975d460e508829e8fb64d3962bc44ad35f3a95a"></script>
-
-</body>
-  </center>
-  
+        <div class="container">
+            <p>
+                <font size=10 face="Courier New">
+                    <em> // Pipo // </em>
+                </font>
+                <hr>
+            </p>
+            <img src="image.jpeg" alt="Profile Image" />
+            <div class="links">
+                <div>
+                    <a href="//24timezones.com/Zurich/time" style="text-decoration: none" class="clock24" id="tz24-1620398593-c1268-eyJob3VydHlwZSI6MTIsInNob3dkYXRlIjoiMCIsInNob3dzZWNvbmRzIjoiMSIsInNob3d0aW1lem9uZSI6IjEiLCJ0eXBlIjoiZCIsImxhbmciOiJlbiJ9" title="Zurich time" target="_blank" rel="nofollow">Zurich time</a>
+                    <script type="text/javascript" src="//w.24timezones.com/l.js" async></script>
+                </div>
+                <div>// <a href="https://pgs.xyz/portfolio">Portfolio</a> //</div>
+                <div>// <a href="https://solo.to/pgs">all links</a> // <a href="https://instagram.com/pgs2007">instagram</a> // <a href="https://bondia.xyz/">writing</a> // <a href="/dashboard/kafka.html">Franz Kafka Quotes</a> // <a href="/dashboard">dashboard</a> //</div>
+            </div>
+        </div>
+        <script type="text/javascript" src="/unprotected/back_to_spaceship.js?hash=4975d460e508829e8fb64d3962bc44ad35f3a95a"></script>
+    </body>
 </html>
