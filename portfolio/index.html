@@ -1,8 +1,47 @@
+<!DOCTYPE html>
 <html>
   <link href="/icon.jpg" rel="shortcut icon"/>
- <center>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="style.css" rel="stylesheet" type="text/css">
-    <body>
+    <style>
+      body {
+        margin: 0;
+        padding: 20px;
+      }
+      .image-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+        gap: 20px;
+        justify-items: center;
+      }
+      img {
+        width: 400px;
+        height: 400px;
+        object-fit: cover;
+      }
+      @media (max-width: 768px) {
+        body {
+          padding: 10px;
+        }
+        .image-grid {
+          grid-template-columns: 1fr;
+          gap: 15px;
+        }
+        img {
+          width: 100%;
+          max-width: 400px;
+          height: 300px;
+        }
+        img.horizontal {
+          height: 200px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <center>
       <br>
       <br>
   
@@ -17,25 +56,25 @@
     <br>
     
     <br>
-  <img src=image1.jpeg with=400px height=400px />
-  <img src=image2.jpeg with=400px height=400px />
-  <img src=image3.jpeg with=400px height=400px />
-  <img src=image4.jpeg with=400px height=400px />
-  <img src=image5.jpeg with=400px height=400px />
-  <img src=image6.jpeg with=400px height=400px />
-  <img src=image7.jpeg with=400px height=400px />
-  <img src=image8.jpeg with=400px height=400px />
-  <img src=image11.jpeg with=400px height=400px />
-  <img src=image9.jpeg with=400px height=400px /> 
-  <img src=image10.jpeg with=400px height=400px />
-  <img src=image12.jpeg with=400px height=400px />
-  <img src=image13.jpeg with=400px height=400px />
-  <br>
-  <img src=image14.jpeg with=400px height=400px />
-  <img src=image15.jpeg with=400px height=400px />
-  <br>
-  <img src=image16.jpeg with=400px height=400px /> 
-  <img src=image17.jpeg with=400px height=400px />
+    <div class="image-grid">
+      <img src="image1.jpeg" alt="Portfolio Image 1" />
+      <img src="image2.jpeg" alt="Portfolio Image 2" />
+      <img src="image3.jpeg" alt="Portfolio Image 3" class="horizontal" />
+      <img src="image4.jpeg" alt="Portfolio Image 4" />
+      <img src="image5.jpeg" alt="Portfolio Image 5" />
+      <img src="image6.jpeg" alt="Portfolio Image 6" class="horizontal" />
+      <img src="image7.jpeg" alt="Portfolio Image 7" />
+      <img src="image8.jpeg" alt="Portfolio Image 8" />
+      <img src="image11.jpeg" alt="Portfolio Image 11" class="horizontal" />
+      <img src="image9.jpeg" alt="Portfolio Image 9" />
+      <img src="image10.jpeg" alt="Portfolio Image 10" />
+      <img src="image12.jpeg" alt="Portfolio Image 12" class="horizontal" />
+      <img src="image13.jpeg" alt="Portfolio Image 13" />
+      <img src="image14.jpeg" alt="Portfolio Image 14" />
+      <img src="image15.jpeg" alt="Portfolio Image 15" class="horizontal" />
+      <img src="image16.jpeg" alt="Portfolio Image 16" />
+      <img src="image17.jpeg" alt="Portfolio Image 17" />
+    </div>
 
   <br>
   <br>
