@@ -91,9 +91,12 @@
     <script>
         const html5QrCode = new Html5Qrcode("reader");
         const config = { 
-            fps: 10, 
-            qrbox: { width: 250, height: 250 },
-            formatsToSupport: [ Html5QrCode.BARCODE_FORMAT.EAN_13 ]
+            fps: 30,
+            qrbox: { width: 300, height: 100 },
+            formatsToSupport: [ Html5QrCode.BARCODE_FORMAT.EAN_13 ],
+            experimentalFeatures: {
+                useBarCodeDetectorIfSupported: true
+            }
         };
 
         html5QrCode.start(
@@ -101,13 +104,17 @@
             config,
             (decodedText) => {
                 if (decodedText && decodedText.length === 13) {
+                    html5QrCode.stop();
                     onScanSuccess(decodedText);
                 }
             },
             (errorMessage) => {
-                // Ignore scanning errors to prevent error spam
+                console.warn(`QR Error: ${errorMessage}`);
             }
-        );
+        ).catch((err) => {
+            showError("Unable to start camera. Please ensure you've granted camera permissions.");
+            console.error(err);
+        });
 
         async function onScanSuccess(isbn) {
             try {
