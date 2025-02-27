@@ -120,6 +120,31 @@
             font-size: 1rem;
             color: #475569;
             line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .goodreads-button {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            background: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: var(--border-radius);
+            font-weight: 600;
+            transition: all 0.3s ease;
+            opacity: 0;
+            transform: translateY(10px);
+        }
+
+        .goodreads-button.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .goodreads-button:hover {
+            background: var(--secondary-color);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
         }
 
         .error {
@@ -165,7 +190,10 @@
     </div>
     <div class="container">
         <div class="scanner-section">
-            <div id="reader"></div>
+            <div>
+                <button id="startButton" style="width: 100%; padding: 1rem; background: var(--primary-color); color: white; border: none; border-radius: var(--border-radius); font-size: 1.1rem; font-weight: 600; margin-bottom: 1rem; cursor: pointer; transition: background-color 0.3s ease;">Start Scanning</button>
+                <div id="reader"></div>
+            </div>
             <div id="result">
             <div class="book-info">
                 <img class="book-cover" id="bookCover" src="" alt="Book cover">
@@ -173,6 +201,7 @@
                     <div class="book-title" id="bookTitle"></div>
                     <div class="book-author" id="bookAuthor"></div>
                     <div class="book-summary" id="bookSummary"></div>
+                    <a href="#" class="goodreads-button" id="goodreadsLink" target="_blank">View on Goodreads</a>
                 </div>
             </div>
         </div>
@@ -197,23 +226,38 @@
             focusMode: 'continuous'
         };
 
-        html5QrCode.start(
-            { facingMode: "environment", zoom: 2.0 },
-            config,
-            (decodedText) => {
-                const cleanedText = decodedText.replace(/[^0-9]/g, '');
-                if (cleanedText && (cleanedText.length === 13 || cleanedText.length === 10)) {
-                    html5QrCode.stop();
-                    onScanSuccess(decodedText);
+        document.getElementById('startButton').addEventListener('click', function() {
+            this.disabled = true;
+            this.textContent = 'Scanning...';
+            this.style.backgroundColor = 'var(--secondary-color)';
+            
+            html5QrCode.start(
+                { facingMode: "environment", zoom: 2.0 },
+                config,
+                (decodedText) => {
+                    const cleanedText = decodedText.replace(/[^0-9]/g, '');
+                    if (cleanedText && (cleanedText.length === 13 || cleanedText.length === 10)) {
+                        html5QrCode.stop();
+                        onScanSuccess(decodedText);
+                        resetButton();
+                    }
+                },
+                (errorMessage) => {
+                    console.warn(`QR Error: ${errorMessage}`);
                 }
-            },
-            (errorMessage) => {
-                console.warn(`QR Error: ${errorMessage}`);
-            }
-        ).catch((err) => {
-            showError("Unable to start camera. Please ensure you've granted camera permissions.");
-            console.error(err);
+            ).catch((err) => {
+                showError("Unable to start camera. Please ensure you've granted camera permissions.");
+                console.error(err);
+                resetButton();
+            });
         });
+
+        function resetButton() {
+            const button = document.getElementById('startButton');
+            button.disabled = false;
+            button.textContent = 'Start Scanning';
+            button.style.backgroundColor = 'var(--primary-color)';
+        }
 
         async function onScanSuccess(isbn) {
             try {
@@ -240,6 +284,11 @@
             document.getElementById('bookAuthor').textContent = book.authors ? book.authors.join(', ') : 'Unknown Author';
             document.getElementById('bookSummary').textContent = book.description || 'No summary available';
             document.getElementById('bookCover').src = book.imageLinks?.thumbnail || '';
+
+            const goodreadsLink = document.getElementById('goodreadsLink');
+            const searchQuery = encodeURIComponent(`${book.title} ${book.authors ? book.authors[0] : ''}`);
+            goodreadsLink.href = `https://www.goodreads.com/search?q=${searchQuery}`;
+            setTimeout(() => goodreadsLink.classList.add('visible'), 100);
         }
 
         function showError(message) {
