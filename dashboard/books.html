@@ -3,78 +3,170 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Book QR Scanner & Summary</title>
+    <title>Book Scanner | Instant Book Information</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #1e40af;
+            --background-color: #f8fafc;
+            --text-color: #1e293b;
+            --border-radius: 16px;
+        }
+
+        * {
             margin: 0;
-            padding: 20px;
-            background-color: #f5f5f5;
+            padding: 0;
+            box-sizing: border-box;
         }
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            background-color: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 2rem;
         }
-        h1 {
-            color: #333;
+
+        .hero {
             text-align: center;
-            margin-bottom: 30px;
+            margin-bottom: 3rem;
+            max-width: 800px;
         }
+
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: #64748b;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            background: white;
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+        }
+
+        .scanner-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            align-items: start;
+        }
+
         #reader {
             width: 100%;
-            margin-bottom: 20px;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            background: var(--background-color);
+            transition: all 0.3s ease;
         }
+
         #result {
-            margin-top: 20px;
-            padding: 20px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
             display: none;
+            animation: fadeIn 0.5s ease;
         }
+
         .book-info {
-            display: flex;
-            gap: 20px;
-            margin-bottom: 20px;
+            background: white;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1);
         }
+
         .book-cover {
-            max-width: 150px;
+            width: 100%;
+            max-width: 200px;
             height: auto;
+            object-fit: cover;
+            border-radius: calc(var(--border-radius) - 4px);
         }
+
         .book-details {
-            flex: 1;
+            padding: 1.5rem;
         }
+
         .book-title {
-            font-size: 1.5em;
-            margin-bottom: 10px;
-            color: #333;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--text-color);
+            margin-bottom: 0.5rem;
         }
+
         .book-author {
-            color: #666;
-            margin-bottom: 10px;
+            font-size: 1.1rem;
+            color: #64748b;
+            margin-bottom: 1rem;
         }
+
         .book-summary {
-            line-height: 1.6;
-            color: #444;
+            font-size: 1rem;
+            color: #475569;
+            line-height: 1.8;
         }
+
         .error {
-            color: #ff0000;
-            padding: 10px;
-            background-color: #ffe6e6;
-            border-radius: 5px;
-            margin-top: 10px;
+            background: #fee2e2;
+            border-left: 4px solid #ef4444;
+            color: #991b1b;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-top: 1rem;
             display: none;
+            animation: slideIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes slideIn {
+            from { transform: translateX(-10px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        @media (max-width: 768px) {
+            .scanner-section {
+                grid-template-columns: 1fr;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .container {
+                padding: 1rem;
+            }
         }
     </style>
 </head>
 <body>
+    <div class="hero">
+        <h1>Instant Book Information</h1>
+        <p>Scan any book's barcode to instantly access detailed information, summaries, and reviews. Perfect for readers, students, and book enthusiasts.</p>
+    </div>
     <div class="container">
-        <h1>Book QR Scanner & Summary</h1>
-        <div id="reader"></div>
-        <div id="result">
+        <div class="scanner-section">
+            <div id="reader"></div>
+            <div id="result">
             <div class="book-info">
                 <img class="book-cover" id="bookCover" src="" alt="Book cover">
                 <div class="book-details">
@@ -91,19 +183,26 @@
     <script>
         const html5QrCode = new Html5Qrcode("reader");
         const config = { 
-            fps: 30,
-            qrbox: { width: 300, height: 100 },
-            formatsToSupport: [ Html5QrCode.BARCODE_FORMAT.EAN_13 ],
+            fps: 10,
+            qrbox: { width: 250, height: 80 },
+            formatsToSupport: [ 
+                Html5QrCode.BARCODE_FORMAT.EAN_13,
+                Html5QrCode.BARCODE_FORMAT.EAN_8,
+                Html5QrCode.BARCODE_FORMAT.ISBN
+            ],
             experimentalFeatures: {
                 useBarCodeDetectorIfSupported: true
-            }
+            },
+            aspectRatio: 1.0,
+            focusMode: 'continuous'
         };
 
         html5QrCode.start(
-            { facingMode: "environment" },
+            { facingMode: "environment", zoom: 2.0 },
             config,
             (decodedText) => {
-                if (decodedText && decodedText.length === 13) {
+                const cleanedText = decodedText.replace(/[^0-9]/g, '');
+                if (cleanedText && (cleanedText.length === 13 || cleanedText.length === 10)) {
                     html5QrCode.stop();
                     onScanSuccess(decodedText);
                 }
