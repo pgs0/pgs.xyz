@@ -223,7 +223,10 @@
                 useBarCodeDetectorIfSupported: true
             },
             aspectRatio: 1.0,
-            focusMode: 'continuous'
+            focusMode: 'continuous',
+            videoConstraints: {
+                facingMode: { exact: "environment" }
+            }
         };
 
         document.getElementById('startButton').addEventListener('click', function() {
@@ -232,7 +235,7 @@
             this.style.backgroundColor = 'var(--secondary-color)';
             
             html5QrCode.start(
-                { facingMode: "environment", zoom: 2.0 },
+                { facingMode: { exact: "environment" } },
                 config,
                 (decodedText) => {
                     const cleanedText = decodedText.replace(/[^0-9]/g, '');
