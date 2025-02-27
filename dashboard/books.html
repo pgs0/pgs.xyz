@@ -90,9 +90,24 @@
     <script src="https://unpkg.com/html5-qrcode"></script>
     <script>
         const html5QrCode = new Html5Qrcode("reader");
-        const config = { fps: 10, qrbox: { width: 250, height: 250 } };
+        const config = { 
+            fps: 10, 
+            qrbox: { width: 250, height: 250 },
+            formatsToSupport: [ Html5QrCode.BARCODE_FORMAT.EAN_13 ]
+        };
 
-        html5QrCode.start({ facingMode: "environment" }, config, onScanSuccess);
+        html5QrCode.start(
+            { facingMode: "environment" },
+            config,
+            (decodedText) => {
+                if (decodedText && decodedText.length === 13) {
+                    onScanSuccess(decodedText);
+                }
+            },
+            (errorMessage) => {
+                // Ignore scanning errors to prevent error spam
+            }
+        );
 
         async function onScanSuccess(isbn) {
             try {
