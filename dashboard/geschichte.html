@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zweiter Weltkrieg - Interaktive Lernseite</title>
+    <style>
+        /* Grundlegendes Layout und Typografie */
+        body {
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 1rem 0;
+            text-align: center;
+        }
+
+        h1 {
+            font-family: 'Lora', serif;
+            margin-bottom: 0.5rem;
+        }
+
+        .subtitle {
+            font-style: italic;
+        }
+
+        nav {
+            background-color: #ddd;
+            padding: 0.5rem 0;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: space-around;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+        }
+
+        main {
+            padding: 20px;
+        }
+
+        .section {
+            margin-bottom: 30px;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            font-family: 'Lora', serif;
+            border-bottom: 2px solid #ccc;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Bilder */
+        .section-image {
+            width: 100%;
+            max-width: 600px;
+            height: auto;
+            display: block;
+            margin: 0 auto 1rem;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Timeline */
+        .timeline-container {
+            position: relative;
+            padding: 20px 0;
+        }
+
+        .timeline-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            width: 2px;
+            background-color: #ccc;
+            transform: translateX(-50%);
+        }
+
+        .timeline-item {
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .timeline-item:nth-child(odd) {
+            padding-right: 50%;
+        }
+
+        .timeline-item:nth-child(even) {
+            padding-left: 50%;
+        }
+
+        .timeline-date {
+            position: absolute;
+            top: 0;
+            width: 20%;
+            text-align: center;
+            font-weight: bold;
+            color: #555;
+        }
+
+        .timeline-item:nth-child(odd) .timeline-date {
+            right: 0;
+        }
+
+        .timeline-item:nth-child(even) .timeline-date {
+            left: 0;
+        }
+
+        .timeline-content {
+            background-color: #eee;
+            padding: 1rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Accordion */
+        .accordion-item {
+            margin-bottom: 10px;
+        }
+
+        .accordion-button {
+            background-color: #ddd;
+            color: #333;
+            cursor: pointer;
+            padding: 1rem;
+            width: 100%;
+            border: none;
+            text-align: left;
+            outline: none;
+            transition: 0.4s;
+        }
+
+        .accordion-button:hover {
+            background-color: #ccc;
+        }
+
+        .accordion-content {
+            padding: 0 1rem;
+            background-color: white;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+            max-height: 0;
+        }
+
+        /* Karten (Schweiz im Krieg) */
+        .card-container {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+
+        .card {
+            background-color: #eee;
+            padding: 1rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            width: 30%;
+            margin-bottom: 1rem;
+        }
+
+        /* Image Grid (Folgen des Krieges) */
+        .image-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+        }
+
+        .image-grid img {
+            width: 100%;
+            height: auto;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Quiz */
+        #quiz-form {
+            margin-bottom: 1rem;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 1rem 0;
+        }
+    </style>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,700;1,400;1,700&family=Roboto:wght@400;700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <header>
+        <h1>Der Zweite Weltkrieg</h1>
+        <p class="subtitle">Eine interaktive Reise durch die Geschichte</p>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="#einleitung">Einleitung</a></li>
+            <li><a href="#ursachen">Ursachen</a></li>
+            <li><a href="#verlauf">Kriegsverlauf</a></li>
+            <li><a href="#schweiz">Schweiz im Krieg</a></li>
+            <li><a href="#folgen">Folgen</a></li>
+            <li><a href="#quiz">Quiz</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <section id="einleitung" class="section">
+            <h2>Einleitung</h2>
+            <img src="images/ww2_intro.jpg" alt="Szene aus dem Zweiten Weltkrieg" class="section-image">
+            <p>Der Zweite Weltkrieg war ein globaler Konflikt, der von 1939 bis 1945 dauerte. Er forderte Millionen von
+                Menschenleben und veränderte die Weltordnung nachhaltig...</p>
+            <!-- Weitere Inhalte zur Einleitung -->
+        </section>
+
+        <section id="ursachen" class="section">
+            <h2>Ursachen des Krieges</h2>
+            <div class="timeline-container">
+                <div class="timeline-item">
+                    <div class="timeline-date">1919</div>
+                    <div class="timeline-content">
+                        <h3>Versailler Vertrag</h3>
+                        <p>Der Versailler Vertrag nach dem Ersten Weltkrieg belastete Deutschland wirtschaftlich und
+                            politisch.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">1933</div>
+                    <div class="timeline-content">
+                        <h3>Machtergreifung Hitlers</h3>
+                        <p>Die Machtergreifung Hitlers und der NSDAP in Deutschland führte zu einer aggressiven
+                            Außenpolitik.</p>
+                    </div>
+                </div>
+                <!-- Weitere Timeline-Items zu den Ursachen -->
+            </div>
+        </section>
+
+        <section id="verlauf" class="section">
+            <h2>Der Kriegsverlauf</h2>
+            <div class="accordion">
+                <div class="accordion-item">
+                    <button class="accordion-button">
+                        1939: Kriegsbeginn und Blitzkriege
+                    </button>
+                    <div class="accordion-content">
+                        <p>Der Krieg begann mit dem deutschen Überfall auf Polen am 1. September 1939. Es folgten
+                            Blitzkriege gegen...</p>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <button class="accordion-button">
+                        1941: Kriegseintritt der Sowjetunion und der USA
+                    </button>
+                    <div class="accordion-content">
+                        <p>Mit dem deutschen Angriff auf die Sowjetunion und dem japanischen Angriff auf Pearl Harbor
+                            traten die Sowjetunion und die USA in den Krieg ein.</p>
+                    </div>
+                </div>
+                <!-- Weitere Accordion-Items zum Kriegsverlauf -->
+            </div>
+        </section>
+
+        <section id="schweiz" class="section">
+            <h2>Die Schweiz im Zweiten Weltkrieg</h2>
+            <div class="card-container">
+                <div class="card">
+                    <h3>Neutralität</h3>
+                    <p>Die Schweiz verfolgte eine Politik der Neutralität, um ihre Unabhängigkeit zu wahren.</p>
+                </div>
+                <div class="card">
+                    <h3>Wirtschaft</h3>
+                    <p>Die Schweizer Wirtschaft war eng mit den Kriegsparteien verflochten.</p>
+                </div>
+                <!-- Weitere Karten zur Rolle der Schweiz -->
+            </div>
+        </section>
+
+        <section id="folgen" class="section">
+            <h2>Die Folgen des Krieges</h2>
+            <div class="image-grid">
+                <img src="images/ww2_folgen1.jpg" alt="Zerstörte Stadt nach dem Krieg">
+                <img src="images/ww2_folgen2.jpg" alt="Gründung der Vereinten Nationen">
+                <!-- Weitere Bilder zu den Folgen -->
+            </div>
+            <p>Der Zweite Weltkrieg hatte verheerende Folgen für die Welt. Millionen von Menschen starben, Städte wurden
+                zerstört, und die politische Landkarte veränderte sich grundlegend...</p>
+        </section>
+
+        <section id="quiz" class="section">
+            <h2>Quiz: Teste dein Wissen</h2>
+            <form id="quiz-form">
+                <!-- Quizfragen und Antwortoptionen -->
+                <button type="submit">Ergebnis anzeigen</button>
+            </form>
+            <div id="quiz-result"></div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Lernseite Zweiter Weltkrieg</p>
+    </footer>
+
+    <script>
+        // Accordion Funktionalität
+        const accordionButtons = document.querySelectorAll('.accordion-button');
+
+        accordionButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const content = button.nextElementSibling;
+
+                button.classList.toggle('active');
+
+                if (content.style.maxHeight) {
+                    content.style.maxHeight = null;
+                } else {
+                    content.style.maxHeight = content.scrollHeight + 'px';
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
