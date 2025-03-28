@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="/icon.jpg" rel="shortcut icon" />
+    <title>Dashboard</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        font-family: 'Roboto', sans-serif;
+        margin: 0;
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        min-height: 100vh;
+        background: url('/dashboard/image.jpeg') no-repeat center center fixed;
+        background-size: cover;
+        backdrop-filter: blur(2px);
+      }
+
+      .container {
+        background: rgba(255, 255, 255, 0.15);
+        padding: 60px;
+        border-radius: 20px;
+        box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        width: 90%;
+        max-width: 1100px;
+        text-align: center;
+      }
+
+      h1 {
+        font-family: 'Playfair Display', serif;
+        color: #ffffff;
+        font-size: 48px;
+        margin-bottom: 50px;
+        text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+      }
+
+      .dashboard {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 40px;
+        justify-items: center;
+        width: 100%;
+      }
+
+      .app-card {
+        background: rgba(255, 255, 255, 0.25);
+        border-radius: 16px;
+        box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        padding: 30px;
+        text-align: center;
+        transition: transform 0.2s;
+        width: 100%;
+        max-width: 320px;
+        color: #ffffff;
+      }
+
+      .app-card h2 {
+        font-family: 'Playfair Display', serif;
+        font-size: 28px;
+        margin-bottom: 20px;
+      }
+
+      .app-card p {
+        font-size: 18px;
+        margin-bottom: 25px;
+      }
+
+      .app-card a {
+        background-color: rgba(255, 255, 255, 0.25);
+        color: #fff;
+        padding: 12px 25px;
+        border-radius: 10px;
+        text-decoration: none;
+        font-size: 16px;
+        font-weight: bold;
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        transition: all 0.2s ease;
+      }
+
+      .app-card a:hover {
+        background-color: rgba(255, 255, 255, 0.4);
+        color: #000;
+        transform: translateY(-3px);
+      }
+
+      .footer {
+        margin-top: 40px;
+        color: #ffffff;
+        font-weight: 600;
+        text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.4);
+      }
+
+      .footer a {
+        color: #ffffff;
+        text-decoration: none;
+        border-bottom: 1px solid #ffffff;
+        padding: 2px 4px;
+      }
+
+      .footer a:hover {
+        background-color: rgba(255, 255, 255, 0.3);
+        color: #000;
+      }
+
+      @media screen and (max-width: 768px) {
+        .container {
+          padding: 30px 20px;
+        }
+
+        h1 {
+          font-size: 36px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Dashboard</h1>
+      <div class="dashboard">
+        <div class="app-card">
+          <h2>Excel Suchmaschine</h2>
+          <p>Laden Sie eine Excel-Datei hoch und durchsuchen Sie sie nach Namen.</p>
+          <a href="excel_search.html" target="_blank">App öffnen</a>
+        </div>
+        <div class="app-card">
+          <h2>Rechner</h2>
+          <p>Einfache Rechner-App für grundlegende und wissenschaftliche Berechnungen.</p>
+          <a href="calculator.html" target="_blank">App öffnen</a>
+        </div>
+        <div class="app-card">
+          <h2>Franz Kafka Zitate</h2>
+          <p>Entdecken Sie inspirierende Zitate von Franz Kafka.</p>
+          <a href="kafka.html" target="_blank">App öffnen</a>
+        </div>
+        <div class="app-card">
+          <h2>George Orwell Zitate</h2>
+          <p>Entdecken Sie inspirierende Zitate von George Orwell.</p>
+          <a href="orwell.html" target="_blank">App öffnen</a>
+        </div>
+        <div class="app-card">
+          <h2>To-Do Liste</h2>
+          <p>Verwalten Sie Ihre Aufgaben mit einer einfachen To-Do-Liste.</p>
+          <a href="todo.html" target="_blank">App öffnen</a>
+        </div>
+        <div class="app-card">
+          <h2>QR Code Generator</h2>
+          <p>Machen sie ganz einfach aus einem Text oder Link einen QR Code</p>
+          <a href="qr.html" target="_blank">App öffnen</a>
+        </div>
+      </div>
+      <div class="footer">
+        <p><a href="https://pgs.xyz" target="_blank">pgs.xyz</a></p>
+      </div>
+    </div>
+  </body>
+</html>
