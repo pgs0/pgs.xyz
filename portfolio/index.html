@@ -17,37 +17,48 @@
     <br>
     
     <br>
-  <img src=image1.jpeg with=400px height=400px />
-  <img src=image2.jpeg with=400px height=400px />
-  <img src=image3.jpeg with=400px height=400px />
-  <img src=image4.jpeg with=400px height=400px />
-  <img src=image5.jpeg with=400px height=400px />
-  <img src=image6.jpeg with=400px height=400px />
-  <img src=image7.jpeg with=400px height=400px />
-  <img src=image8.jpeg with=400px height=400px />
-  <img src=image11.jpeg with=400px height=400px />
-  <br>
-  <img src=image9.jpeg with=400px height=400px /> 
-  <img src=image10.jpeg with=400px height=400px />
-  <br>
-  <img src=image22.jpeg with=400px height=400px />
-  <img src=image23.jpeg with=400px height=400px />
-  <img src=image24.jpeg with=400px height=400px />
-  <img src=image25.jpeg with=400px height=400px />
-  <br>
-  <img src=image12.jpeg with=400px height=400px />
-  <img src=image13.jpeg with=400px height=400px />
-  <br>
-  <img src=image14.jpeg with=400px height=400px />
-  <img src=image15.jpeg with=400px height=400px />
-  <img src=image21.jpeg with=400px height=400px />
-  <br>
-  <img src=image19.jpeg with=400px height=400px />
-  <img src=image18.jpeg with=400px height=400px />
-  <img src=image20.jpeg with=400px height=400px />
-  <br>
-  <img src=image16.jpeg with=400px height=400px /> 
-  <img src=image17.jpeg with=400px height=400px />
+    <div class="image-grid">
+      <img src="image1.jpeg" width="400" height="400" loading="lazy" alt="Portfolio image 1" />
+      <img src="image2.jpeg" width="400" height="400" loading="lazy" alt="Portfolio image 2" />
+      <img src="image3.jpeg" width="400" height="400" loading="lazy" alt="Portfolio image 3" />
+      <img src="image4.jpeg" width="400" height="400" loading="lazy" alt="Portfolio image 4" />
+      <img src="image5.jpeg" width="400" height="400" loading="lazy" alt="Portfolio image 5" />
+      <img src="image6.jpeg" width="400" height="400" loading="lazy" alt="Portfolio image 6" />
+      <img src="image7.jpeg" width="400" height="400" loading="lazy" alt="Portfolio image 7" />
+      <img src="image8.jpeg" width="400" height="400" loading="lazy" alt="Portfolio image 8" />
+      <img src="image11.jpeg" width="400" height="400" loading="lazy" alt="Portfolio image 11" />
+      <img src="image9.jpeg" width="400" height="400" loading="lazy" alt="Portfolio image 9" />
+      <img src="image10.jpeg" width="400" height="400" loading="lazy" alt="Portfolio image 10" />
+      <img src="image22.jpeg" width="400" height="400" loading="lazy" alt="Portfolio image 22" />
+      <img src="image23.jpeg" width="400" height="400" loading="lazy" alt="Portfolio image 23" />
+      <img src="image24.jpeg" width="400" height="400" loading="lazy" alt="Portfolio image 24" />
+      <img src="image25.jpeg" width="400" height="400" loading="lazy" alt="Portfolio image 25" />
+      <img src="image12.jpeg" width="400" height="400" loading="lazy" alt="Portfolio image 12" />
+      <img src="image13.jpeg" width="400" height="400" loading="lazy" alt="Portfolio image 13" />
+      <img src="image14.jpeg" width="400" height="400" loading="lazy" alt="Portfolio image 14" />
+      <img src="image15.jpeg" width="400" height="400" loading="lazy" alt="Portfolio image 15" />
+      <img src="image21.jpeg" width="400" height="400" loading="lazy" alt="Portfolio image 21" />
+      <img src="image19.jpeg" width="400" height="400" loading="lazy" alt="Portfolio image 19" />
+      <img src="image18.jpeg" width="400" height="400" loading="lazy" alt="Portfolio image 18" />
+      <img src="image20.jpeg" width="400" height="400" loading="lazy" alt="Portfolio image 20" />
+      <img src="image16.jpeg" width="400" height="400" loading="lazy" alt="Portfolio image 16" />
+      <img src="image17.jpeg" width="400" height="400" loading="lazy" alt="Portfolio image 17" />
+    </div>
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const images = document.querySelectorAll('img[loading="lazy"]');
+        const imageObserver = new IntersectionObserver((entries, observer) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              const img = entry.target;
+              img.classList.add('loaded');
+              observer.unobserve(img);
+            }
+          });
+        });
+        images.forEach(img => imageObserver.observe(img));
+      });
+    </script>
 
   <br>
   <br>
