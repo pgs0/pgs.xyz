@@ -1,5 +1,31 @@
 <html>
   <link href="/icon.jpg" rel="shortcut icon"/>
+  <style>
+    .lightbox {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.9);
+      z-index: 1000;
+      cursor: pointer;
+    }
+
+    .lightbox img {
+      max-width: 90%;
+      max-height: 90vh;
+      margin: auto;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      object-fit: contain;
+      width: auto;
+      height: auto;
+    }
+  </style>
  <center>
     <link href="style.css" rel="stylesheet" type="text/css">
     <body>
@@ -44,8 +70,13 @@
       <img src="image16.jpeg" loading="lazy" alt="Portfolio image 16" />
       <img src="image17.jpeg" loading="lazy" alt="Portfolio image 17" />
     </div>
+    <div class="lightbox" id="lightbox">
+      <img id="lightbox-img" src="" alt="Lightbox image">
+    </div>
+
     <script>
       document.addEventListener('DOMContentLoaded', () => {
+        // Lazy loading
         const images = document.querySelectorAll('img[loading="lazy"]');
         const imageObserver = new IntersectionObserver((entries, observer) => {
           entries.forEach(entry => {
@@ -57,6 +88,22 @@
           });
         });
         images.forEach(img => imageObserver.observe(img));
+
+        // Lightbox functionality
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+
+        images.forEach(img => {
+          img.style.cursor = 'pointer';
+          img.addEventListener('click', () => {
+            lightboxImg.src = img.src;
+            lightbox.style.display = 'block';
+          });
+        });
+
+        lightbox.addEventListener('click', () => {
+          lightbox.style.display = 'none';
+        });
       });
     </script>
 
