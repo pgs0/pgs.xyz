@@ -1,7 +1,8 @@
 /* Portfolio page styles */
 img {
-    max-width: 100%;
-    height: auto;
+    width: 400px;
+    height: 400px;
+    object-fit: cover;
     transition: opacity 0.3s ease-in-out;
     margin: 10px;
 }
@@ -19,6 +20,7 @@ img.loaded {
     img {
         width: 300px;
         height: 300px;
+        object-fit: cover;
     }
 }
 
@@ -26,6 +28,7 @@ img.loaded {
     img {
         width: 200px;
         height: 200px;
+        object-fit: cover;
     }
 }
 
