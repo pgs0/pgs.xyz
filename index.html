@@ -4,6 +4,20 @@
 
  <center>
     <link href="style.css" rel="stylesheet" type="text/css">
+    <style>
+      .lazy-image {
+        display: inline-block;
+        background-color: #f2f2f2;
+        border-radius: 0;
+        opacity: 0;
+        transition: opacity 0.3s ease-in-out;
+      }
+
+      .lazy-image.loaded {
+        opacity: 1;
+        background-color: transparent;
+      }
+    </style>
     <body>
       <br>
       <br>
@@ -19,7 +33,16 @@
     <br>
     
     <br>
-  <img src=image.jpeg with=300px height=300px />
+  <img
+    src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw=="
+    data-src="image.jpeg"
+    alt="Portrait"
+    width="300"
+    height="300"
+    loading="eager"
+    decoding="async"
+    class="lazy-image"
+  />
   <br>
   <br>
   <a href="//24timezones.com/Zurich/time" style="text-decoration: none" class="clock24" id="tz24-1620398593-c1268-eyJob3VydHlwZSI6MTIsInNob3dkYXRlIjoiMCIsInNob3dzZWNvbmRzIjoiMSIsInNob3d0aW1lem9uZSI6IjEiLCJ0eXBlIjoiZCIsImxhbmciOiJlbiJ9" title="Zurich time" target="_blank" rel="nofollow">Zurich time</a>
@@ -35,6 +58,41 @@
 
  <br>
 
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const heroImage = document.querySelector('.lazy-image[data-src]');
+    if (!heroImage) return;
+
+    const loadImage = img => {
+      if (img.dataset.src) {
+        const markLoaded = () => img.classList.add('loaded');
+        if (img.complete && img.naturalWidth !== 0) {
+          markLoaded();
+        } else {
+          img.addEventListener('load', markLoaded, { once: true });
+        }
+        img.src = img.dataset.src;
+        img.removeAttribute('data-src');
+      }
+    };
+
+    if ('loading' in HTMLImageElement.prototype) {
+      loadImage(heroImage);
+    } else if ('IntersectionObserver' in window) {
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            loadImage(entry.target);
+            observer.unobserve(entry.target);
+          }
+        });
+      });
+      observer.observe(heroImage);
+    } else {
+      loadImage(heroImage);
+    }
+  });
+</script>
 <script type="text/javascript" src="/unprotected/back_to_spaceship.js?hash=4975d460e508829e8fb64d3962bc44ad35f3a95a"></script>
 
 </body>
