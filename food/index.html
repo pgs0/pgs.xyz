@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>pgs.xyz // food</title>
+    <link href="/icon.jpg" rel="shortcut icon" />
+    <style>
+      body {
+        font-family: "Courier New", monospace;
+        background: #f5f2ed;
+        color: #2f2419;
+      }
+      .frame {
+        max-width: 960px;
+        margin: 40px auto;
+        padding: 12px;
+        border: 1px solid #c9b59a;
+        background: #fffaf3;
+        text-align: center;
+      }
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 16px;
+        margin-top: 18px;
+      }
+      .card {
+        border: 1px solid #c9b59a;
+        background: #fdf7ed;
+        padding: 10px;
+        text-decoration: none;
+        color: inherit;
+      }
+      .card img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+        background: #d8cabc;
+        border: 1px solid #c9b59a;
+      }
+      .card h3 {
+        margin: 10px 0 6px 0;
+        letter-spacing: 0.5px;
+      }
+      .note {
+        margin-top: 18px;
+        font-size: 12px;
+        color: #6f6257;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="frame">
+      <h1>// food</h1>
+      <p>Schlicht gehaltene Sammlung der Rezepte. Kein Schnickschnack.</p>
+
+      <div class="grid">
+        <a class="card" href="/food/sample-recipe.html">
+          <img src="/image.jpeg" alt="Rustikale Pasta" />
+          <h3>Rustikale Pasta mit Tomaten</h3>
+          <div>Portionen: 2</div>
+        </a>
+
+        <a class="card" href="/food/recipe-template.html">
+          <img
+            src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw=="
+            alt="Leere Vorlage"
+          />
+          <h3>Neue Vorlage nutzen</h3>
+          <div>kopiere & fülle aus</div>
+        </a>
+
+        <!--
+          Um weitere Rezepte hinzuzufügen:
+          1. Kopiere recipe-template.html und benenne die Datei (z.B. kartoffelsuppe.html).
+          2. Ergänze Bild, Zutaten, Anleitung und Portionen in der neuen Datei.
+          3. Füge hier einen neuen .card-Block mit Titel, Bild und Link auf die Datei ein.
+        -->
+      </div>
+
+      <div class="note">
+        Dies ist eine eigenständige Ecke der Seite. Direkt erreichbar unter
+        /food.
+      </div>
+    </div>
+  </body>
+</html>
