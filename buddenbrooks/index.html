@@ -1,0 +1,412 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2822
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww11520\viewh8400\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 <!DOCTYPE html>\
+<html lang="de">\
+<head>\
+    <meta charset="UTF-8">\
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">\
+    <title>Buddenbrooks \'96 Verfall einer Familie | StudyWiki</title>\
+    <style>\
+        /* --- EDITORIAL DESIGN SYSTEM --- */\
+        :root \{\
+            --font-heading: 'Playfair Display', serif;\
+            --font-body: 'Lora', serif; /* Lesefreundliche Serifenschrift */\
+            --font-ui: 'Helvetica Neue', sans-serif;\
+            \
+            --color-bg: #fdfbf7; /* Gebrochenes Papierwei\'df */\
+            --color-text: #2c2c2c;\
+            --color-accent: #8a2be2; /* Dezentes Lila f\'fcr Links/Akzente - modern */\
+            --color-border: #e0e0e0;\
+            --color-sidebar: #f4f1ea;\
+            --color-nav-active: #2c2c2c;\
+        \}\
+\
+        /* Reset & Base */\
+        * \{ box-sizing: border-box; margin: 0; padding: 0; \}\
+        \
+        body \{\
+            font-family: var(--font-body);\
+            background-color: var(--color-bg);\
+            color: var(--color-text);\
+            line-height: 1.8;\
+            font-size: 18px;\
+            display: flex;\
+            min-height: 100vh;\
+        \}\
+\
+        /* --- LAYOUT --- */\
+        .sidebar \{\
+            width: 280px;\
+            background-color: var(--color-sidebar);\
+            border-right: 1px solid var(--color-border);\
+            padding: 40px 20px;\
+            position: fixed;\
+            height: 100vh;\
+            overflow-y: auto;\
+            top: 0;\
+            left: 0;\
+            display: flex;\
+            flex-direction: column;\
+        \}\
+\
+        .main-content \{\
+            margin-left: 280px;\
+            padding: 60px 80px;\
+            max-width: 1000px;\
+            width: 100%;\
+        \}\
+\
+        /* --- TYPOGRAPHY --- */\
+        h1, h2, h3, h4 \{\
+            font-family: var(--font-heading);\
+            font-weight: 700;\
+            margin-bottom: 1rem;\
+            color: #1a1a1a;\
+        \}\
+\
+        h1 \{ font-size: 3.5rem; line-height: 1.1; margin-bottom: 0.5rem; \}\
+        .subtitle \{ font-family: var(--font-ui); font-size: 1rem; color: #666; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 3rem; display: block; \}\
+        \
+        h2 \{ \
+            font-size: 2.2rem; \
+            margin-top: 3rem; \
+            padding-bottom: 10px; \
+            border-bottom: 1px solid var(--color-text);\
+        \}\
+        \
+        h3 \{ font-size: 1.5rem; margin-top: 2rem; font-style: italic; \}\
+        \
+        p \{ margin-bottom: 1.5rem; \}\
+        \
+        blockquote \{\
+            border-left: 3px solid var(--color-accent);\
+            padding-left: 20px;\
+            margin: 2rem 0;\
+            font-style: italic;\
+            color: #555;\
+            font-family: var(--font-heading);\
+            font-size: 1.3rem;\
+        \}\
+\
+        /* --- NAVIGATION --- */\
+        .nav-brand \{\
+            font-family: var(--font-heading);\
+            font-size: 1.5rem;\
+            font-weight: bold;\
+            margin-bottom: 3rem;\
+            text-decoration: none;\
+            color: var(--color-text);\
+            display: block;\
+        \}\
+\
+        .nav-list \{ list-style: none; \}\
+        .nav-item \{ margin-bottom: 15px; \}\
+        \
+        .nav-link \{\
+            text-decoration: none;\
+            color: #666;\
+            font-family: var(--font-ui);\
+            font-size: 0.95rem;\
+            transition: color 0.3s;\
+            display: block;\
+            padding: 5px 0;\
+        \}\
+\
+        .nav-link:hover, .nav-link.active \{\
+            color: var(--color-nav-active);\
+            font-weight: bold;\
+            border-right: 3px solid var(--color-accent);\
+        \}\
+\
+        .sub-nav \{\
+            margin-left: 15px;\
+            margin-top: 5px;\
+            font-size: 0.85rem;\
+            border-left: 1px solid #ccc;\
+            padding-left: 10px;\
+        \}\
+\
+        /* --- COMPONENTS --- */\
+        .citation \{\
+            font-size: 0.75rem;\
+            color: #999;\
+            vertical-align: super;\
+            text-decoration: none;\
+            margin-left: 2px;\
+        \}\
+\
+        .meta-box \{\
+            background: #fff;\
+            border: 1px solid var(--color-border);\
+            padding: 20px;\
+            margin-bottom: 2rem;\
+            font-family: var(--font-ui);\
+            font-size: 0.9rem;\
+        \}\
+\
+        .character-card \{\
+            background: #fff;\
+            border: 1px solid var(--color-border);\
+            padding: 25px;\
+            margin-bottom: 20px;\
+            border-left: 4px solid #333;\
+        \}\
+\
+        .summary-part \{\
+            display: none; /* Hidden by default for tab switching */\
+            animation: fadeIn 0.5s;\
+        \}\
+        \
+        .summary-part.active \{ display: block; \}\
+\
+        @keyframes fadeIn \{\
+            from \{ opacity: 0; transform: translateY(10px); \}\
+            to \{ opacity: 1; transform: translateY(0); \}\
+        \}\
+\
+        /* --- IMAGES & DIAGRAMS PLACEHOLDERS --- */\
+        .diagram-container \{\
+            background-color: #f0f0f0;\
+            border: 1px dashed #999;\
+            padding: 20px;\
+            margin: 20px 0;\
+            text-align: center;\
+            color: #555;\
+            font-family: var(--font-ui);\
+        \}\
+\
+        /* Mobile Responsive */\
+        @media (max-width: 768px) \{\
+            body \{ flex-direction: column; \}\
+            .sidebar \{ position: relative; width: 100%; height: auto; padding: 20px; \}\
+            .main-content \{ margin-left: 0; padding: 30px 20px; \}\
+            h1 \{ font-size: 2.5rem; \}\
+        \}\
+    </style>\
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,700;1,400&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">\
+</head>\
+<body>\
+\
+    <nav class="sidebar">\
+        <a href="#home" class="nav-brand" onclick="showSection('home')">Buddenbrooks<br><span style="font-size:0.6em; font-weight:400;">FanWiki</span></a>\
+        \
+        <ul class="nav-list">\
+            <li class="nav-item"><a href="#home" class="nav-link active" onclick="showSection('home')">\'dcbersicht</a></li>\
+            \
+            <li class="nav-item">\
+                <span class="nav-link" style="cursor:default; font-weight:bold;">Zusammenfassung</span>\
+                <div class="sub-nav">\
+                    <a href="#teil1" class="nav-link" onclick="showSection('teil1')">Teil 1 (1835)</a>\
+                    <a href="#teil2" class="nav-link" onclick="showSection('teil2')">Teil 2 (Jugend & Liebe)</a>\
+                    <a href="#teil3" class="nav-link" onclick="showSection('teil3')">Teil 3 (Ehe & Revolution)</a>\
+                    <a href="#teil4" class="nav-link" onclick="showSection('teil4')">Teil 4 (Hochzeiten)</a>\
+                    <a href="#teil5" class="nav-link" onclick="showSection('teil5')">Teil 5 (Gipfel & Tod)</a>\
+                    <a href="#teil6" class="nav-link" onclick="showSection('teil6')">Teil 6 (Verfall beginnt)</a>\
+                    <a href="#teil7" class="nav-link" onclick="showSection('teil7')">Teil 7 (Letzte Generation)</a>\
+                    <a href="#teil8" class="nav-link" onclick="showSection('teil8')">Teil 8 (Das Ende)</a>\
+                </div>\
+            </li>\
+\
+            <li class="nav-item"><a href="#charaktere" class="nav-link" onclick="showSection('charaktere')">Figuren & Profile</a></li>\
+            <li class="nav-item"><a href="#analyse" class="nav-link" onclick="showSection('analyse')">Analyse & Themen</a></li>\
+            <li class="nav-item"><a href="#stil" class="nav-link" onclick="showSection('stil')">Stil & Kontext</a></li>\
+        </ul>\
+    </nav>\
+\
+    <main class="main-content">\
+\
+        <section id="home" class="summary-part active">\
+            <h1>Buddenbrooks</h1>\
+            <span class="subtitle">Verfall einer Familie | Von Thomas Mann (1901)</span>\
+            \
+            [cite_start]<p class="lead">Der erste gro\'dfe Gesellschaftsroman von Thomas Mann beschreibt den Aufstieg und den schleichenden Niedergang einer wohlhabenden L\'fcbecker Kaufmannsfamilie zwischen 1835 und 1877[cite: 3].</p>\
+            \
+            <div class="meta-box">\
+                <strong>Schnell-Info:</strong><br>\
+                <ul>\
+                    <li><strong>Epoche:</strong> Realismus / \'dcbergang zur Moderne</li>\
+                    <li><strong>Ort:</strong> L\'fcbeck (Mengstra\'dfe)</li>\
+                    <li><strong>Zeitraum:</strong> 1835 \'96 1877 (Vier Generationen)</li>\
+                    <li><strong>Kernthema:</strong> Verfall, Konflikt Kunst vs. Wirtschaft</li>\
+                </ul>\
+            </div>\
+\
+            [cite_start]<p>Dieses FanWiki bereitet die Inhalte sch\'fclergerecht auf \'96 verst\'e4ndlich, anschaulich und mit der n\'f6tigen Tiefe f\'fcr Analysen und Klausurvorbereitung[cite: 3]. Nutzen Sie die Navigation links, um kapitelweise Zusammenfassungen oder Charakteranalysen aufzurufen.</p>\
+        </section>\
+\
+        <section id="teil1" class="summary-part">\
+            <h2>Teil 1: Das Fundament (1835)</h2>\
+            <div class="diagram-container">\
+                                <br><em>Stammbaum der ersten Generationen im Jahr 1835</em>\
+            </div>\
+\
+            <h3>Kapitel 1: Die Einweihung</h3>\
+            [cite_start]<p>Die Handlung beginnt an einem Donnerstag im Oktober 1835 im neuen Haus der Familie Buddenbrook in der Mengstra\'dfe zu L\'fcbeck[cite: 8]. [cite_start]Das Patriarchen-Ehepaar Johann Buddenbrook der \'c4ltere und Antoinette l\'e4dt gemeinsam mit ihrem Sohn Jean und dessen Familie zur Hauseinweihung ein[cite: 9].</p>\
+            <blockquote>"Je, den D\'fcwel ook, c'est la question, ma tr\'e8s ch\'e8re demoiselle!"</blockquote>\
+            [cite_start]<p>Dieser Satz, ein Mix aus Plattdeutsch und Franz\'f6sisch, er\'f6ffnet den Roman und symbolisiert die kulturelle Vielfalt und den Status der Familie[cite: 12]. [cite_start]Das \'fcppige Mahl demonstriert den Wohlstand und den Anspruch der Buddenbrooks, zur st\'e4dtischen Elite zu geh\'f6ren[cite: 15]. [cite_start]Doch mit der Erw\'e4hnung des "verlorenen Sohnes" Gotthold f\'e4llt bereits ein erster Schatten auf die Idylle[cite: 16].</p>\
+\
+            <h3>Kapitel 2 & 3: Der erste Riss</h3>\
+            <p>Ein Brief von Gotthold (Jeans Halbbruder) sorgt f\'fcr Unruhe. Er fordert Geld, da er sich benachteiligt f\'fchlt. [cite_start]Johann und Jean weisen die Forderung ab, um das Firmenkapital zu sch\'fctzen \'96 hier geht Gesch\'e4ft vor famili\'e4re Vers\'f6hnung[cite: 23, 28].</p>\
+            [cite_start]<p><strong>Analyse:</strong> Dies legt den Grundstein f\'fcr das zentrale Thema: Die Firma und das Ansehen stehen \'fcber dem individuellen Gl\'fcck[cite: 28].</p>\
+        </section>\
+\
+        <section id="teil2" class="summary-part">\
+            <h2>Teil 2: Jugend, Pflicht und erste Opfer (1838\'961845)</h2>\
+            \
+            <h3>Tonys Erziehung und die Hagenstr\'f6ms</h3>\
+            [cite_start]<p>Tony Buddenbrook wird im Pensionat von Sesemi Weichbrodt zur "jungen Dame" erzogen[cite: 66]. [cite_start]Ihr Stolz auf die eigene Familie ist immens, was sich in der fr\'fchen Feindschaft zur neureichen Familie Hagenstr\'f6m zeigt[cite: 39].</p>\
+\
+            <h3>Die Trag\'f6die um Morten und Gr\'fcnlich</h3>\
+            <p>Tony soll den Hamburger Kaufmann Bendix Gr\'fcnlich heiraten, eine "gute Partie". [cite_start]Tony findet ihn widerlich[cite: 98, 99]. [cite_start]Zur Erholung reist sie nach Travem\'fcnde und verliebt sich dort in den Studenten Morten Schwarzkopf[cite: 114].</p>\
+            <p>Es ist ein Sommer der Freiheit und der ersten Liebe. Sie versprechen sich die Ehe. Doch der gesellschaftliche Druck siegt: Der Vater interveniert, Gr\'fcnlich droht manipulativ mit Selbstmord, und Tony f\'fcgt sich ihrem "Schicksal" und der Familienehre. [cite_start]Sie tr\'e4gt ihre Verlobung mit Gr\'fcnlich selbst in die Familienchronik ein \'96 ein Akt der Selbstaufgabe[cite: 137].</p>\
+            \
+            <div class="meta-box">\
+                <strong>Leitmotiv: Pflicht vs. Neigung</strong><br>\
+                [cite_start]Sowohl Tony (Ehe mit Gr\'fcnlich) als auch Thomas (Trennung von seiner Geliebten Anna) opfern ihr pers\'f6nliches Gl\'fcck dem Ansehen der Firma[cite: 156].\
+            </div>\
+        </section>\
+\
+        <section id="teil3" class="summary-part">\
+            <h2>Teil 3: Der erste Skandal (1846\'961855)</h2>\
+            <h3>Gr\'fcnlichs Bankrott</h3>\
+            <p>Tony lebt ungl\'fccklich in Hamburg. Bald stellt sich heraus: Bendix Gr\'fcnlich ist ein Betr\'fcger. [cite_start]Er hat Tony nur wegen der Mitgift geheiratet, um seinen Bankrott aufzuschieben[cite: 188]. Vater Jean Buddenbrook holt Tony und ihre Tochter Erika nach Hause und erzwingt die Scheidung. [cite_start]F\'fcr die Familie ist dies ein Verlust an Reputation und Geld[cite: 198].</p>\
+            \
+            <h3>1848 und der Tod der Alten</h3>\
+            [cite_start]<p>Die Revolution von 1848 verl\'e4uft in L\'fcbeck glimpflich, doch die Aufregung fordert Opfer: Gro\'dfvater Kr\'f6ger stirbt[cite: 205]. [cite_start]Jean Buddenbrook stirbt schlie\'dflich 1855 \'fcberraschend, womit die Verantwortung auf den jungen Thomas \'fcbergeht[cite: 222].</p>\
+        </section>\
+\
+        <section id="teil4" class="summary-part">\
+            <h2>Teil 4: Thomas an der Spitze & Christians Absturz</h2>\
+            [cite_start]<p>Thomas \'fcbernimmt die Firma und heiratet Gerda Arnoldsen, eine reiche und musikalische Niederl\'e4nderin[cite: 243]. Es scheint bergauf zu gehen (Mitgift, Ansehen).</p>\
+            <p>Doch Christian Buddenbrook entwickelt sich zum Gegenteil: Er ist hypochondrisch, liebt das Theater und eine Variet\'e9-T\'e4nzerin. [cite_start]Er wird zur Belastung f\'fcr den Ruf der Firma[cite: 266]. Thomas verst\'f6\'dft ihn quasi aus dem Gesch\'e4ft.</p>\
+            \
+            <h3>Tonys zweite Ehe</h3>\
+            <p>Tony versucht ihr Gl\'fcck erneut mit dem M\'fcnchener Alois Permaneder. Doch Permaneder entpuppt sich als fauler Rentier ohne Ehrgeiz. [cite_start]Als er sie betrunken beleidigt, verl\'e4sst Tony ihn sofort[cite: 288]. Sie kehrt als zweifach geschiedene Frau zur\'fcck \'96 das Scheitern ihrer b\'fcrgerlichen Bestimmung ist besiegelt.</p>\
+        </section>\
+\
+        <section id="teil5" class="summary-part">\
+            <h2>Teil 5 bis 8: Der unaufhaltsame Abstieg</h2>\
+            \
+            <h3>Der H\'f6hepunkt und die Wende</h3>\
+            <p>1861 wird Hanno geboren, der langersehnte Erbe. Thomas wird Senator. [cite_start]Doch innerlich ist Thomas ausgebrannt ("Der Hausbau und der Tod")[cite: 321]. [cite_start]Riskante Spekulationen (P\'f6ppenrader Ernte) scheitern durch einen Hagelschlag[cite: 381].</p>\
+            \
+            <h3>Der Tod des Senators</h3>\
+            [cite_start]<p>Thomas Buddenbrook stirbt 1875 nach einer missgl\'fcckten Zahnbehandlung v\'f6llig entkr\'e4ftet[cite: 459]. Mit ihm stirbt der letzte f\'e4hige Kopf der Firma.</p>\
+            \
+            <h3>Das Ende (Hanno)</h3>\
+            <p>Hanno, sensibel und k\'fcnstlerisch begabt (Musik), zerbricht an der Schule und der Erwartungshaltung. [cite_start]Er stirbt 1877 mit 15 Jahren an Typhus[cite: 504].</p>\
+            <blockquote>"Ich dachte... es k\'e4me nichts mehr!" [cite_start]\'96 Hanno, als er den Schlussstrich unter seinen Namen im Stammbuch zieht[cite: 400].</blockquote>\
+            <p>Am Ende bleiben nur die Frauen (Tony, Gerda, Sesemi) zur\'fcck. Der Name Buddenbrook erlischt.</p>\
+        </section>\
+\
+         <section id="teil6" class="summary-part">\
+            <h2>Teil 6: Finanzielle und moralische Verluste</h2>\
+            <p><em>(Siehe Navigation Teil 5-8 f\'fcr Zusammenfassung)</em></p>\
+        </section>\
+        <section id="teil7" class="summary-part">\
+             <h2>Teil 7: Die letzte Generation</h2>\
+            <p><em>(Siehe Navigation Teil 5-8 f\'fcr Zusammenfassung)</em></p>\
+        </section>\
+        <section id="teil8" class="summary-part">\
+             <h2>Teil 8: Das Erl\'f6schen</h2>\
+            <p><em>(Siehe Navigation Teil 5-8 f\'fcr Zusammenfassung)</em></p>\
+        </section>\
+\
+        <section id="charaktere" class="summary-part">\
+            <h2>Die Charaktere</h2>\
+            <p>Hier werden die zentralen Figuren und ihre Funktion im "Verfall" analysiert.</p>\
+\
+            <div class="diagram-container">\
+                                <br><em>Beziehungsgeflecht der Hauptfiguren</em>\
+            </div>\
+\
+            <div class="character-card">\
+                <h3>Thomas Buddenbrook</h3>\
+                <p><strong>Rolle:</strong> Der Repr\'e4sentant der dritten Generation. <br>\
+                <strong>Charakteristik:</strong> Diszipliniert, ehrgeizig, aber innerlich hohl. Er spielt die Rolle des erfolgreichen Kaufmanns nur noch, w\'e4hrend seine Lebenskraft schwindet. [cite_start]Er unterdr\'fcckt seine k\'fcnstlerischen Neigungen zugunsten der Pflicht[cite: 593].</p>\
+            </div>\
+\
+            <div class="character-card">\
+                <h3>Tony (Antonie) Buddenbrook</h3>\
+                <p><strong>Rolle:</strong> Das emotionale Zentrum und die \'dcberlebende.<br>\
+                <strong>Charakteristik:</strong> Stolz, naiv, loyal. Sie opfert ihr Lebensgl\'fcck (Morten) zweimal f\'fcr die Firma (Gr\'fcnlich, Permaneder), scheitert aber gesellschaftlich. [cite_start]Sie klammert sich bis zum Schluss an den "Vornehmheit" der Familie[cite: 627].</p>\
+            </div>\
+\
+            <div class="character-card">\
+                <h3>Christian Buddenbrook</h3>\
+                <p><strong>Rolle:</strong> Das "Enfant terrible" und Spiegel der Dekadenz.<br>\
+                <strong>Charakteristik:</strong> Hypochondrisch, theaterbegeistert, gesch\'e4ftsunf\'e4hig. [cite_start]Er rebelliert nicht aktiv, sondern durch seine blo\'dfe Existenz und "Nervenleiden" gegen das protestantische Arbeitsethos[cite: 648]. Er endet in einer Anstalt.</p>\
+            </div>\
+\
+            <div class="character-card">\
+                <h3>Hanno Buddenbrook</h3>\
+                <p><strong>Rolle:</strong> Der letzte Spross.<br>\
+                <strong>Charakteristik:</strong> Hochsensibel, musikalisch, lebensunt\'fcchtig. Er verk\'f6rpert das Ende der Vitalit\'e4t. [cite_start]Die Musik ist sein R\'fcckzugsort vor der grausamen Realit\'e4t der Schule und des Gesch\'e4fts[cite: 728].</p>\
+            </div>\
+        </section>\
+\
+        <section id="analyse" class="summary-part">\
+            <h2>Analyse & Themen</h2>\
+\
+            <h3>1. Verfall einer Familie</h3>\
+            <p>Thomas Mann beschreibt keinen pl\'f6tzlichen Absturz, sondern einen schleichenden Prozess \'fcber vier Generationen. [cite_start]Der Vitalit\'e4tsverlust korrespondiert mit einer Zunahme an geistiger Reflexion und Sensibilit\'e4t (Dekadenz)[cite: 833].</p>\
+            <ul>\
+                <li><strong>1. Generation (Johann):</strong> Robust, naiv, tatkr\'e4ftig.</li>\
+                <li><strong>2. Generation (Jean):</strong> Religi\'f6s, moralisch, konservativ.</li>\
+                <li><strong>3. Generation (Thomas/Christian):</strong> Nerv\'f6s, reflektiert, Fassade br\'f6ckelt.</li>\
+                <li><strong>4. Generation (Hanno):</strong> Lebensunf\'e4hig, k\'fcnstlerisch verfeinert, Tod.</li>\
+            </ul>\
+\
+            <h3>2. Kunst vs. Wirtschaft (B\'fcrgertum)</h3>\
+            <p>Ein zentraler Konflikt: Die b\'fcrgerliche Welt (Leistung, Pflicht, Geld) ist mit der Welt des Geistes und der Kunst (Musik, Philosophie) unvereinbar. [cite_start]Wer sich der Kunst \'f6ffnet (Christian, Gerda, Hanno), wird f\'fcr das Gesch\'e4ft untauglich[cite: 926]. Thomas zerbricht daran, dass er beides vereinen will (Kaufmann sein, aber Schopenhauer lesen).</p>\
+\
+            <h3>3. Stilmittel: Das Leitmotiv</h3>\
+            <p>\'c4hnlich wie Richard Wagner in der Oper nutzt Mann wiederkehrende S\'e4tze, um Charaktere zu kennzeichnen:</p>\
+            <ul>\
+                [cite_start]<li>Sesemi Weichbrodt: <em>"Sei gl\'f6cklich, du gutes Kind!"</em> (Ironie, da niemand gl\'fccklich wird)[cite: 1048].</li>\
+                [cite_start]<li>Christian: <em>"Ich kann es nun nicht mehr."</em> (Ausdruck der Ersch\'f6pfung)[cite: 1052].</li>\
+                <li>Tony: <em>"Vornehmheit"</em> und der Verweis auf Mortens <em>"Naturprodukt Honig"</em>.</li>\
+            </ul>\
+        </section>\
+\
+        <section id="stil" class="summary-part">\
+            <h2>Historischer Kontext & Stil</h2>\
+            <div class="diagram-container">\
+                                <br><em>Zeitstrahl: Der Wandel vom traditionellen Handel zur Industrie</em>\
+            </div>\
+            <p>Der Roman spielt vor dem Hintergrund des 19. Jahrhunderts (Vorm\'e4rz, 1848er Revolution, Reichsgr\'fcndung 1871). [cite_start]Er zeigt den \'dcbergang von der alten, ehrbaren Kaufmannstradition (Buddenbrooks) zum r\'fccksichtslosen, modernen Kapitalismus (Hagenstr\'f6ms)[cite: 891].</p>\
+            <p>Die Hagenstr\'f6ms triumphieren am Ende, weil sie sich anpassen. Die Buddenbrooks gehen unter, weil sie an veralteten Formen festhalten.</p>\
+        </section>\
+\
+    </main>\
+\
+    <script>\
+        // Einfache Tab-Logik f\'fcr die Navigation\
+        function showSection(id) \{\
+            // Alle Sektionen ausblenden\
+            const sections = document.querySelectorAll('.summary-part');\
+            sections.forEach(sec => sec.classList.remove('active'));\
+\
+            // Gew\'e4hlte Sektion einblenden\
+            const activeSec = document.getElementById(id);\
+            if(activeSec) activeSec.classList.add('active');\
+\
+            // Navigation Active State\
+            const navLinks = document.querySelectorAll('.nav-link');\
+            navLinks.forEach(link => link.classList.remove('active'));\
+            \
+            // Finde den Link, der geklickt wurde (oder dessen Eltern-Element)\
+            const clickedLink = document.querySelector(`a[href="#$\{id\}"]`);\
+            if(clickedLink) clickedLink.classList.add('active');\
+            \
+            // Scroll nach oben\
+            window.scrollTo(0,0);\
+        \}\
+    </script>\
+</body>\
+</html>}
