@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PGS | Finance Snapshot</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <style>
+    :root {
+      --bg: #0b1221;
+      --card: #10192e;
+      --accent: #7c5dff;
+      --muted: #9fb0ce;
+      --text: #e9efff;
+      --grid-gap: 1.2rem;
+      --shadow: 0 20px 50px rgba(0, 0, 0, 0.45);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Inter", "SF Pro Display", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at 20% 20%, rgba(124, 93, 255, 0.15), transparent 30%),
+        radial-gradient(circle at 80% 0%, rgba(82, 177, 255, 0.2), transparent 30%),
+        var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    header {
+      padding: 2.5rem 1.5rem 1.5rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    h1 {
+      margin: 0 0 0.5rem;
+      font-size: 2.4rem;
+      letter-spacing: -0.02em;
+    }
+
+    .subhead {
+      margin: 0;
+      color: var(--muted);
+      font-weight: 500;
+    }
+
+    .search {
+      margin-top: 1.5rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr auto;
+      gap: 0.75rem;
+    }
+
+    .search input {
+      padding: 0.9rem 1rem;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: rgba(255, 255, 255, 0.04);
+      color: var(--text);
+      font-size: 1rem;
+      outline: none;
+      transition: border 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .search input:focus {
+      border-color: rgba(124, 93, 255, 0.6);
+      box-shadow: 0 0 0 3px rgba(124, 93, 255, 0.15);
+    }
+
+    button {
+      padding: 0.9rem 1.5rem;
+      border-radius: 12px;
+      border: none;
+      background: linear-gradient(120deg, #7c5dff, #52b1ff);
+      color: white;
+      font-weight: 700;
+      letter-spacing: 0.01em;
+      cursor: pointer;
+      transition: transform 0.15s ease, box-shadow 0.2s ease;
+      box-shadow: 0 12px 30px rgba(124, 93, 255, 0.35);
+    }
+
+    button:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 16px 34px rgba(124, 93, 255, 0.45);
+    }
+
+    button:active {
+      transform: translateY(0);
+    }
+
+    main {
+      padding: 0 1.5rem 2rem;
+      max-width: 1200px;
+      margin: 0 auto 3rem;
+    }
+
+    .grid {
+      display: grid;
+      gap: var(--grid-gap);
+    }
+
+    .two-col {
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    }
+
+    .charts {
+      margin-top: 1.5rem;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    }
+
+    .card {
+      background: linear-gradient(145deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.01));
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 18px;
+      padding: 1.25rem 1.4rem 1.1rem;
+      box-shadow: var(--shadow);
+    }
+
+    .section-title {
+      font-size: 0.95rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.6rem;
+    }
+
+    .stat-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding: 0.5rem 0;
+      border-bottom: 1px dashed rgba(255, 255, 255, 0.08);
+    }
+
+    .stat-row:last-child {
+      border-bottom: none;
+      padding-bottom: 0.2rem;
+    }
+
+    .label {
+      color: var(--muted);
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
+
+    .value {
+      font-weight: 700;
+      font-size: 1.05rem;
+      color: #f5f8ff;
+      text-align: right;
+    }
+
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.4rem 0.75rem;
+      background: rgba(124, 93, 255, 0.15);
+      border: 1px solid rgba(124, 93, 255, 0.35);
+      border-radius: 999px;
+      font-weight: 700;
+      color: #dcd5ff;
+      font-size: 0.95rem;
+    }
+
+    .status {
+      margin-top: 1.1rem;
+      color: var(--muted);
+      font-size: 0.95rem;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #52b1ff;
+      box-shadow: 0 0 0 6px rgba(82, 177, 255, 0.15);
+    }
+
+    .error {
+      color: #ffb0b0;
+    }
+
+    @media (max-width: 720px) {
+      .search {
+        grid-template-columns: 1fr;
+      }
+      button {
+        width: 100%;
+      }
+    }
+
+    .chart-shell {
+      height: 220px;
+      position: relative;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Finance Snapshot</h1>
+    <p class="subhead">Search any ticker to see valuation, margins, cash flow, balance, and dividends at a glance using free Alpha Vantage data.</p>
+    <div class="search">
+      <input id="ticker" type="text" placeholder="Ticker (e.g. AAPL)" aria-label="Ticker" value="AAPL" />
+      <input id="apiKey" type="text" placeholder="Alpha Vantage API key (demo works for testing)" aria-label="Alpha Vantage API key" />
+      <button id="load">Load Snapshot</button>
+    </div>
+    <div class="status" id="status"><span class="dot"></span><span>Waiting for lookup…</span></div>
+  </header>
+  <main>
+    <div class="grid two-col">
+      <div class="card">
+        <div class="section-title">Valuation</div>
+        <div id="valuation"></div>
+      </div>
+      <div class="card">
+        <div class="section-title">Cash Flow</div>
+        <div id="cashflow"></div>
+      </div>
+      <div class="card">
+        <div class="section-title">Margins & Growth</div>
+        <div id="margins"></div>
+      </div>
+      <div class="card">
+        <div class="section-title">Balance</div>
+        <div id="balance"></div>
+      </div>
+      <div class="card">
+        <div class="section-title">Dividend</div>
+        <div id="dividend"></div>
+      </div>
+    </div>
+    <div class="section-title" style="margin: 2rem 0 0.5rem;">Trends</div>
+    <div class="grid charts">
+      <div class="card">
+        <div class="section-title">Price (Close)</div>
+        <div class="chart-shell"><canvas id="priceChart"></canvas></div>
+      </div>
+      <div class="card">
+        <div class="section-title">Revenue</div>
+        <div class="chart-shell"><canvas id="revenueChart"></canvas></div>
+      </div>
+      <div class="card">
+        <div class="section-title">EBITDA</div>
+        <div class="chart-shell"><canvas id="ebitdaChart"></canvas></div>
+      </div>
+      <div class="card">
+        <div class="section-title">Net Income</div>
+        <div class="chart-shell"><canvas id="netIncomeChart"></canvas></div>
+      </div>
+      <div class="card">
+        <div class="section-title">Free Cash Flow</div>
+        <div class="chart-shell"><canvas id="fcfChart"></canvas></div>
+      </div>
+    </div>
+  </main>
+  <script>
+    const statusEl = document.getElementById("status");
+    const valuationEl = document.getElementById("valuation");
+    const cashflowEl = document.getElementById("cashflow");
+    const marginsEl = document.getElementById("margins");
+    const balanceEl = document.getElementById("balance");
+    const dividendEl = document.getElementById("dividend");
+    const tickerEl = document.getElementById("ticker");
+    const apiKeyEl = document.getElementById("apiKey");
+    const charts = {};
+
+    const safeNum = (value) => {
+      const num = Number(value);
+      return Number.isFinite(num) ? num : null;
+    };
+
+    const formatMoney = (value, decimals = 2) => {
+      if (value === null || value === undefined || Number.isNaN(value)) return "—";
+      const abs = Math.abs(value);
+      const suffixes = [
+        { limit: 1e12, symbol: "T" },
+        { limit: 1e9, symbol: "B" },
+        { limit: 1e6, symbol: "M" },
+      ];
+      for (const { limit, symbol } of suffixes) {
+        if (abs >= limit) return `${(value / limit).toFixed(decimals)}${symbol}`;
+      }
+      return value.toFixed(decimals);
+    };
+
+    const formatPercent = (value, decimals = 2) => {
+      if (value === null || value === undefined || Number.isNaN(value)) return "—";
+      return `${(value * 100).toFixed(decimals)}%`;
+    };
+
+    const formatRatio = (value, decimals = 2) => {
+      if (value === null || value === undefined || Number.isNaN(value)) return "—";
+      return value.toFixed(decimals);
+    };
+
+    const renderRows = (container, rows) => {
+      container.innerHTML = rows
+        .map(
+          (row) => `
+          <div class="stat-row">
+            <div class="label">${row.label}</div>
+            <div class="value">${row.value}</div>
+          </div>
+        `
+        )
+        .join("");
+    };
+
+    const setStatus = (text, isError = false) => {
+      statusEl.innerHTML = `<span class="dot" style="background:${isError ? '#ff6b6b' : '#52b1ff'}; box-shadow: 0 0 0 6px ${
+        isError ? 'rgba(255,107,107,0.15)' : 'rgba(82,177,255,0.15)'
+      };"></span><span class="${isError ? 'error' : ''}">${text}</span>`;
+    };
+
+    const fetchJson = async (url) => {
+      const res = await fetch(url);
+      if (!res.ok) throw new Error(`Request failed: ${res.status}`);
+      return res.json();
+    };
+
+    const computeFreeCashFlow = (cashFlow) => {
+      if (!cashFlow) return null;
+      const operating = safeNum(cashFlow.operatingCashflow);
+      const capex = safeNum(cashFlow.capitalExpenditures);
+      if (operating === null || capex === null) return null;
+      return operating + capex; // capex is negative in API
+    };
+
+    const lookup = async () => {
+      const rawTicker = tickerEl.value.trim().toUpperCase();
+      const apiKey = apiKeyEl.value.trim() || "demo";
+      if (!rawTicker) return;
+
+      setStatus(`Loading ${rawTicker}…`);
+
+      try {
+        const [overview, cashFlow, balance, income, prices] = await Promise.all([
+          fetchJson(`https://www.alphavantage.co/query?function=OVERVIEW&symbol=${rawTicker}&apikey=${apiKey}`),
+          fetchJson(`https://www.alphavantage.co/query?function=CASH_FLOW&symbol=${rawTicker}&apikey=${apiKey}`),
+          fetchJson(`https://www.alphavantage.co/query?function=BALANCE_SHEET&symbol=${rawTicker}&apikey=${apiKey}`),
+          fetchJson(`https://www.alphavantage.co/query?function=INCOME_STATEMENT&symbol=${rawTicker}&apikey=${apiKey}`),
+          fetchJson(`https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol=${rawTicker}&apikey=${apiKey}`),
+        ]);
+
+        if (!overview || !overview.Symbol) throw new Error("No overview data returned. Check the ticker or API key.");
+
+        const cashFlowReport = cashFlow?.annualReports?.[0];
+        const balanceReport = balance?.annualReports?.[0];
+
+        const quarterlyCashFlows = cashFlow?.quarterlyReports || [];
+        const quarterlyIncome = income?.quarterlyReports || [];
+
+        const marketCap = safeNum(overview.MarketCapitalization);
+        const shares = safeNum(overview.SharesOutstanding);
+        const enterpriseValue = safeNum(overview.EnterpriseValue);
+        const freeCashFlow = computeFreeCashFlow(cashFlowReport);
+
+        const fcfYield = marketCap && freeCashFlow ? freeCashFlow / marketCap : null;
+        const fcfPerShare = shares && freeCashFlow ? freeCashFlow / shares : null;
+        const priceFromMarketCap = marketCap && shares ? marketCap / shares : null;
+        const fcfPerShareToPrice = fcfPerShare && priceFromMarketCap ? fcfPerShare / priceFromMarketCap : null;
+        const evFcfYield = enterpriseValue && freeCashFlow ? freeCashFlow / enterpriseValue : null;
+
+        renderRows(valuationEl, [
+          { label: "Market Cap", value: `$${formatMoney(marketCap)}` },
+          { label: "PE (TTM)", value: formatRatio(safeNum(overview.TrailingPE)) },
+          { label: "Price to Sales", value: formatRatio(safeNum(overview.PriceToSalesRatioTTM)) },
+          { label: "EV to EBITDA", value: formatRatio(safeNum(overview.EVToEBITDA)) },
+          { label: "Price to Book", value: formatRatio(safeNum(overview.PriceToBookRatio)) },
+        ]);
+
+        renderRows(cashflowEl, [
+          { label: "Free Cash Flow Yield", value: formatPercent(fcfYield) },
+          { label: "FCF per Share / Price", value: formatPercent(fcfPerShareToPrice) },
+          { label: "EV to Free Cash Flow Yield", value: formatPercent(evFcfYield) },
+          { label: "SBC Impact", value: "—" },
+        ]);
+
+        renderRows(marginsEl, [
+          { label: "Profit Margin", value: formatPercent(safeNum(overview.ProfitMargin)) },
+          { label: "Operating Margin", value: formatPercent(safeNum(overview.OperatingMarginTTM)) },
+          { label: "Quarterly Earnings (YoY)", value: formatPercent(safeNum(overview.QuarterlyEarningsGrowthYOY)) },
+          { label: "Quarterly Revenue (YoY)", value: formatPercent(safeNum(overview.QuarterlyRevenueGrowthYOY)) },
+        ]);
+
+        const cash = safeNum(balanceReport?.cashAndCashEquivalentsAtCarryingValue);
+        const debt = safeNum(balanceReport?.totalDebt);
+        const net =
+          cash !== null && debt !== null
+            ? cash - debt
+            : cash !== null
+            ? cash
+            : debt !== null
+            ? -debt
+            : null;
+
+        renderRows(balanceEl, [
+          { label: "Cash", value: `$${formatMoney(cash)}` },
+          { label: "Debt", value: `$${formatMoney(debt)}` },
+          { label: "Net", value: `$${formatMoney(net)}` },
+        ]);
+
+        renderRows(dividendEl, [
+          { label: "Dividend Yield", value: formatPercent(safeNum(overview.DividendYield)) },
+          { label: "Payout Ratio", value: formatPercent(safeNum(overview.PayoutRatio)) },
+          { label: "Payout Date", value: overview.DividendDate || "—" },
+        ]);
+
+        const renderChart = (id, labels, data, color, formatter = (v) => v) => {
+          const ctx = document.getElementById(id);
+          if (charts[id]) charts[id].destroy();
+          charts[id] = new Chart(ctx, {
+            type: id === "priceChart" ? "line" : "bar",
+            data: {
+              labels,
+              datasets: [
+                {
+                  label: id === "priceChart" ? "Close" : "Value",
+                  data,
+                  backgroundColor: id === "priceChart" ? `${color}55` : color,
+                  borderColor: color,
+                  borderWidth: 2,
+                  fill: id === "priceChart",
+                  tension: 0.3,
+                },
+              ],
+            },
+            options: {
+              plugins: {
+                legend: { display: false },
+                tooltip: {
+                  callbacks: {
+                    label: (context) => formatter(context.parsed.y),
+                  },
+                },
+              },
+              scales: {
+                y: {
+                  ticks: {
+                    callback: (value) => formatter(value),
+                    color: "#9fb0ce",
+                  },
+                  grid: { color: "rgba(255,255,255,0.08)" },
+                },
+                x: {
+                  ticks: { color: "#9fb0ce", maxRotation: 45, minRotation: 45 },
+                  grid: { display: false },
+                },
+              },
+              maintainAspectRatio: false,
+            },
+          });
+        };
+
+        const latestQuarters = (reports, formatter) =>
+          reports
+            .slice(0, 8)
+            .map((r) => ({ label: r.fiscalDateEnding, value: formatter(r) }))
+            .filter((r) => r.value !== null)
+            .reverse();
+
+        const revenueSeries = latestQuarters(quarterlyIncome, (r) => safeNum(r.totalRevenue));
+        const ebitdaSeries = latestQuarters(quarterlyIncome, (r) => safeNum(r.ebitda));
+        const netIncomeSeries = latestQuarters(quarterlyIncome, (r) => safeNum(r.netIncome));
+        const fcfSeries = latestQuarters(quarterlyCashFlows, (r) => computeFreeCashFlow(r));
+
+        const priceSeries = prices?.["Time Series (Daily)"]
+          ? Object.entries(prices["Time Series (Daily)"])
+              .slice(0, 120)
+              .map(([date, values]) => ({ label: date, value: safeNum(values["4. close"]) }))
+              .reverse()
+          : [];
+
+        if (priceSeries.length) {
+          renderChart(
+            "priceChart",
+            priceSeries.map((p) => p.label),
+            priceSeries.map((p) => p.value),
+            "#52b1ff",
+            (v) => `$${v?.toFixed ? v.toFixed(2) : v}`
+          );
+        }
+
+        if (revenueSeries.length) {
+          renderChart(
+            "revenueChart",
+            revenueSeries.map((p) => p.label),
+            revenueSeries.map((p) => p.value),
+            "#f5a524",
+            (v) => `$${formatMoney(v, 1)}`
+          );
+        }
+
+        if (ebitdaSeries.length) {
+          renderChart(
+            "ebitdaChart",
+            ebitdaSeries.map((p) => p.label),
+            ebitdaSeries.map((p) => p.value),
+            "#5bc0de",
+            (v) => `$${formatMoney(v, 1)}`
+          );
+        }
+
+        if (netIncomeSeries.length) {
+          renderChart(
+            "netIncomeChart",
+            netIncomeSeries.map((p) => p.label),
+            netIncomeSeries.map((p) => p.value),
+            "#8bc34a",
+            (v) => `$${formatMoney(v, 1)}`
+          );
+        }
+
+        if (fcfSeries.length) {
+          renderChart(
+            "fcfChart",
+            fcfSeries.map((p) => p.label),
+            fcfSeries.map((p) => p.value),
+            "#7c5dff",
+            (v) => `$${formatMoney(v, 1)}`
+          );
+        }
+
+        setStatus(`Showing latest annual figures for ${overview.Name || rawTicker}`, false);
+      } catch (err) {
+        console.error(err);
+        setStatus(err.message || "Something went wrong", true);
+        valuationEl.innerHTML = cashflowEl.innerHTML = marginsEl.innerHTML = balanceEl.innerHTML = dividendEl.innerHTML =
+          "<p class=\"error\">Unable to load data.</p>";
+      }
+    };
+
+    document.getElementById("load").addEventListener("click", lookup);
+    tickerEl.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") lookup();
+    });
+    apiKeyEl.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") lookup();
+    });
+
+    lookup();
+  </script>
+</body>
+</html>
